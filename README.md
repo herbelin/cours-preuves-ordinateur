@@ -1,2 +1,2 @@
 # cours-preuves-ordinateur
-Page du cours preuves assistées par ordinateurs 2021
+Page du cours preuves assistées par ordinateur 2021
