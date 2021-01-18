@@ -1,5 +1,5 @@
-TD2 : Premiers pas en Coq
-======================
+TP1 : Premiers pas en Coq
+=========================
 
 M1 Informatique - Preuves Assistées par Ordinateur 
 

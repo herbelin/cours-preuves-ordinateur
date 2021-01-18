@@ -1,4 +1,4 @@
-TD6 : Les listes en Coq
+TP4 : Les listes en Coq
 =======================
 
 M1 Informatique - Preuves Assistées par Ordinateur

@@ -1,4 +1,4 @@
-TD9 : Définitions inductives de prédicats et analyse par cas
+TP6 : Définitions inductives de prédicats et analyse par cas
 ============================================================
 
 M1 Informatique - Preuves Assistées par Ordinateur

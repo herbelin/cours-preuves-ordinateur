@@ -1,5 +1,5 @@
-Le Damier de Cachan
-===================
+TP7 : Le Damier de Cachan
+=========================
 
 M1 Informatique - Preuves Assistées par Ordinateur
 

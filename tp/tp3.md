@@ -1,5 +1,5 @@
-TD5 : Les entiers naturels en Coq
-======================
+TP3 : Les entiers naturels en Coq
+=================================
 
 M1 Informatique - Preuves Assistées par Ordinateur 
 

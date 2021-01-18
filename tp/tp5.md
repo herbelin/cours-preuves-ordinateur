@@ -1,4 +1,4 @@
-TD8 : Définitions inductives de prédicats
+TP5 : Définitions inductives de prédicats
 =========================================
 
 M1 Informatique - Preuves Assistées par Ordinateur

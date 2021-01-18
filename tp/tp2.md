@@ -1,4 +1,4 @@
-TD4 : Mathématiques élémentaires en Coq
+TP2 : Mathématiques élémentaires en Coq
 =======================================
 
 M1 Informatique - Preuves Assistées par Ordinateur
