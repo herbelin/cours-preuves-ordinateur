@@ -162,15 +162,15 @@ Après avoir effectué les déclarations suivantes:
 
 ```
 Parameter X Y : Set.
-Parameter A B : X -> Prop.
+Parameter P Q : X -> Prop.
 Parameter R : X -> Y -> Prop.
 ```
 
 Prouver en Coq les formules suivantes:
 
 ```
-Lemma distrib_forall_conj : (forall x, A x /\ B x) <-> (forall x, A x) /\ (forall x, B x).
-Lemma distrib_exists_disj : (exists x, A x \/ B x) <-> (exists x, A x) \/ (exists x, B x).
+Lemma distrib_forall_conj : (forall x, P x /\ Q x) <-> (forall x, P x) /\ (forall x, Q x).
+Lemma distrib_exists_disj : (exists x, P x \/ Q x) <-> (exists x, P x) \/ (exists x, Q x).
 Lemma switch_forall : (forall x, forall y, R x y) <-> (forall y, forall x, R x y).
 Lemma switch_exists : (exists x, exists y, R x y) <-> (exists x, exists y, R x y).
 Lemma switch_forall_exists : (exists y, forall x, R x y) -> forall x, exists y, R x y.
