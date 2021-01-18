@@ -13,13 +13,16 @@ Pierre Letouzey (d'après A. Miquel)
 Pour utiliser Coq, vous aurez besoin d'installer le logiciel ainsi
 qu'une interface utilisateur.  Les options sont :
 
-- JsCoq https://x80.org/collacoq/ (Coq directement dans un navigateur
-  web)
-- CoqIDE (généralement distribué avec Coq)
-- VSCoq (support Coq pour l'éditeur VsCode)
-- Proof General éventuellement complété par Company-Coq (support Coq
-  pour l'éditeur Emacs)
-- Coqtail (support Coq pour l'éditeur Vim)
+- [JsCoq](https://x80.org/collacoq) (Coq directement dans un
+  navigateur web)
+- [CoqIDE](https://coq.inria.fr/refman/practical-tools/coqide.html)
+  (généralement distribué avec Coq)
+- [VsCoq](https://github.com/coq-community/vscoq) (support Coq pour
+  l'éditeur VsCode)
+- [Proof General](https://proofgeneral.github.io/) éventuellement
+  complété par Company-Coq (support Coq pour l'éditeur Emacs)
+- [Coqtail])(https://github.com/whonore/Coqtail (support Coq pour
+  l'éditeur Vim)
 
 Les différentes interfaces proposent une disposition assez similaire :
 le fichier en cours d'édition est à gauche, tandis que les preuves en
