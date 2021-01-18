@@ -137,15 +137,20 @@ Parameters A B C : Prop.
 Puis prouver en Coq les formules suivantes :
 
 ```
-Lemma E1F1 : A -> A.
-Lemma E1F2 : (A -> B) -> (B -> C) -> A -> C.
-Lemma E1F3 : A /\ B <-> B /\ A.
-Lemma E1F4 : A \/ B <-> B \/ A.
-Lemma E1F5 : (A /\ B) /\ C <-> A /\ (B /\ C).
-Lemma E1F6 : (A \/ B) \/ C <-> A \/ (B \/ C).
-Lemma E1F7 : A -> ~~A.
-Lemma E1F8 : (A -> B) -> ~B -> ~A.
-Lemma E1F9 : ~~(A \/ ~A).
+Lemma refl_impl : A -> A.
+Lemma trans_impl : (A -> B) -> (B -> C) -> A -> C.
+Lemma comm_conj : A /\ B <-> B /\ A.
+Lemma comm_disj : A \/ B <-> B \/ A.
+Lemma assoc_conj : (A /\ B) /\ C <-> A /\ (B /\ C).
+Lemma assoc_disj : (A \/ B) \/ C <-> A \/ (B \/ C).
+Lemma double_neg : A -> ~~A.
+Lemma contra : (A -> B) -> ~B -> ~A.
+Lemma double_neg_excluded_middle : ~~(A \/ ~A).
+Lemma iso_curry : (A /\ B -> C) <-> (A -> B -> C)
+Lemma distrib_conj : A /\ (B \/ C) <-> (A /\ B) \/ (A /\ C)
+Lemma distrib_disj : A \/ (B /\ C) <-> (A \/ B) /\ (A \/ C)
+Lemma distrib_conj_impl : A -> (B /\ C) <-> (A -> B) /\ (A -> C)
+Lemma distrib_disj_impl : (A \/ B) -> C <-> (A -> C) /\ (B -> C)
 ```
 
 ### Exercice 2 :  Calcul des prédicats ###
@@ -161,14 +166,17 @@ Parameter R : X -> Y -> Prop.
 Prouver en Coq les formules suivantes:
 
 ```
-Lemma E2F1 : (forall x, A x /\ B x) <-> (forall x, A x) /\ (forall x, B x).
-Lemma E2F2 : (exists x, A x \/ B x) <-> (exists x, A x) \/ (exists x, B x).
-Lemma E2F3 : (exists y, forall x, R x y) -> forall x, exists y, R x y.
+Lemma distrib_forall_conj : (forall x, A x /\ B x) <-> (forall x, A x) /\ (forall x, B x).
+Lemma distrib_exists_disj : (exists x, A x \/ B x) <-> (exists x, A x) \/ (exists x, B x).
+Lemma switch_forall : (forall x, forall y, R x y) <-> (forall y, forall x, R x y).
+Lemma switch_exists : (exists x, exists y, R x y) <-> (exists x, exists y, R x y).
+Lemma switch_forall_exists : (exists y, forall x, R x y) -> forall x, exists y, R x y.
 ```
 
-### Exercice 3 : Reprise ! ###
+### Exercice 3 : logique classique ###
 
-Refaire en Coq les exercices 1 et 4 de la feuille de TD 1. Pour
+Énoncer et prouver en Coq les questions de l'exercice 4 de la feuille
+de [TD 1](https://www.irif.fr/~letouzey//preuves/td1.pdf). Pour
 simuler la règle de raisonnement par l'absurde, on pourra déclarer
 l'axiome suivant:
 
