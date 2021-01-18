@@ -88,7 +88,7 @@ hypothèse `H : A` dans le contexte, et remplace la conclusion par
 une ou plusieurs tactiques, mais certaines tactiques permettent
 également d'effectuer des morceaux de preuve plus complexes, comme par
 exemple la résolution de contraintes linéaires en arithmétique de
-Presburger (tactique `omega`).
+Presburger (tactique `lia`).
 
 Les tactiques sont susceptibles d'engendrer de nouveaux sous-buts
 (correspondant aux prémisses), ou au contraire de faire disparaître le
