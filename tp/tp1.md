@@ -21,7 +21,7 @@ qu'une interface utilisateur.  Les options sont :
   l'éditeur VsCode)
 - [Proof General](https://proofgeneral.github.io/) éventuellement
   complété par Company-Coq (support Coq pour l'éditeur Emacs)
-- [Coqtail])(https://github.com/whonore/Coqtail (support Coq pour
+- [Coqtail](https://github.com/whonore/Coqtail) (support Coq pour
   l'éditeur Vim)
 
 Les différentes interfaces proposent une disposition assez similaire :
