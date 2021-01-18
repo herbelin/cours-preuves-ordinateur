@@ -113,6 +113,9 @@ exécuter pas-à-pas. On peut aussi utiliser le `;` pour **chaîner** des
 tactiques. Ainsi `split;assumption` fait agir `assumption` sur les
 deux sous-buts créés par `split`.
 
+Les tactiques construisent un "terme de preuve". Essayez d'insérer des
+`Show Proof.` entre chaque tactique pour voir le terme en construction.
+
 Devant des tactiques, on peut éventuellement placer une **puce**,
 c'est-à-dire un des marqueurs `-` ou `+` ou `*`. Ces puces sont
 optionnelles mais aident grandement à hiérarchiser la preuve en cours
