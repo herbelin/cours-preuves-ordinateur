@@ -179,7 +179,7 @@ Lemma switch_forall_exists : (exists y, forall x, R x y) -> forall x, exists y, 
 ### Exercice 3 : logique classique ###
 
 Énoncer et prouver en Coq les questions de l'exercice 4 de la feuille
-de [TD 1](https://www.irif.fr/~letouzey//preuves/td1.pdf). Pour
+de [TD 1](../td/td1.pdf). Pour
 simuler la règle de raisonnement par l'absurde, on pourra déclarer
 l'axiome suivant:
 
