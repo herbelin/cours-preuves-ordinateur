@@ -15,6 +15,7 @@ Contacter les enseignants pour obtenir les liens
 - [Notes de cours sur la correspondance preuve-programme, notamment en logique classique](proofs-and-programs.pdf) (en anglais)
 - [Un petit guide de survie pour Coq](https://www.irif.fr/~letouzey//preuves/guide.html)
 
-#### Sujets de TP
+#### Séances TP / TD
 
-Les sujets de TP Coq se trouvent dans le dossier [`tp/`](tp).
+- Séance 1 (18/01) : [TP 1](tp/tp1.md)
+- Séance 2 (25/01) : [TD 1](td/td1.pdf)
