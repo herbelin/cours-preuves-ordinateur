@@ -19,4 +19,4 @@ Contacter les enseignants pour obtenir les liens
 
 - Séance 1 (18/01) : [TP 1](tp/tp1.md)
 - Séance 2 (25/01) : [TD 1](td/td1.pdf) / [Questions corrigées durant la séance](td/td1-seance1-correction.pdf)
-- Séance 3 (01/02) : Suite du [TD 1](td/td1.pdf)
+- Séance 3 (01/02) : Suite du [TD 1](td/td1.pdf) / [Correction des questions portant sur les quantificateurs](td/td1-seance2-correction.pdf)
