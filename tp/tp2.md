@@ -7,8 +7,11 @@ Pierre Letouzey (d'après A. Miquel)
 
 ### Tactiques du jour ###
 
-En Coq, une définition `d` peut être remplacé par son
-corps à l'aide de la tactique `unfold d` (en anglais, unfold signifie déplier).
+En Coq, une définition `d` peut être remplacé par son corps à l'aide
+de la tactique `unfold d` (en anglais, unfold signifie déplier).
+Attention `unfold` ne déplie une définition que dans le but. Utiliser
+une clause `in H` (ou `in H1, H2` ou `in *`) pour déplier dans les
+hypothèses.
 
 L'égalité se traite à l'aide des tactiques `reflexivity`, `symmetry`,
 `transitivity ...` (donner le terme intermédiaire) et `rewrite ...`
@@ -21,7 +24,7 @@ nom d'hypothèse ou de lemme) ou `rewrite <- ...` (réécriture de droite
 Considérons un type `E:Type` muni d'une relation binaire `R`
 dont on suppose qu'elle satisfait aux axiomes des relations d'ordre:
 
-```
+```coq
 Parameter E : Type.
 Parameter R : E -> E -> Prop.
 Axiom refl : forall x : E, R x x.
@@ -31,12 +34,13 @@ Axiom antisym : forall x y : E, R x y -> R y x -> x = y.
 
 On définit les notions de plus petit élément et d'élément minimal de la façon suivante:
 
-```
+```coq
 Definition smallest (x0 : E) := forall x : E, R x0 x.
 Definition minimal (x0 : E) := forall x : E, R x x0 -> x = x0.
 ```
 
-Quels sont les types des objets `smallest` et `minimal` ?
+Quels sont les types des objets `smallest` et `minimal` (vérifier
+votre réponse avec la commande `Check`) ?
 
 Énoncer en Coq puis démontrer les lemmes suivants:
 
@@ -48,7 +52,8 @@ Quels sont les types des objets `smallest` et `minimal` ?
 
 Dans cet exercice, on suppose la règle de raisonnement par
 l'absurde, que l'on déclare en Coq de la manière suivante :
-```
+
+```coq
 Axiom not_not_elim : forall A : Prop, ~~A -> A.
 ```
 

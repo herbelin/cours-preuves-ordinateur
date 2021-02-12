@@ -35,7 +35,7 @@ En Coq, une commande est formée d'un nom de commande (commençant par
 une majuscule), éventuellement suivie d'un ou plusieurs arguments, et
 terminée par un point.  Exemples:
 
-```
+```coq
   Check 0.
   Check S.
   Check nat.
@@ -58,7 +58,7 @@ partie du fichier déjà exécutée.
 L'utilisateur déclare son intention d'effectuer une preuve avec une
 commande de la forme :
 
-```
+```coq
 Lemma and_commut :
  forall A B : Prop, A /\ B <-> B /\ A.
 ```
@@ -98,7 +98,7 @@ la commande `Qed` (d'après *Quod erat demonstrandum*, le CQFD latin)
 pour conclure la preuve et repasser au mode *commande*. Voici par
 exemple une preuve complète pour l'énoncé précédent :
 
-```
+```coq
 Lemma and_commut :
   forall A B : Prop, A /\ B <-> B /\ A.
 Proof.
@@ -133,13 +133,13 @@ commande `Require Import`).
 Poser l'existence de variables propositionnelles `A`, `B` et `C` via
 la commande:
 
-```
+```coq
 Parameters A B C : Prop.
 ```
 
 Puis prouver en Coq les formules suivantes :
 
-```
+```coq
 Lemma refl_impl : A -> A.
 Lemma trans_impl : (A -> B) -> (B -> C) -> A -> C.
 Lemma comm_conj : A /\ B <-> B /\ A.
@@ -160,7 +160,7 @@ Lemma distrib_disj_impl : (A \/ B) -> C <-> (A -> C) /\ (B -> C).
 
 Après avoir effectué les déclarations suivantes:
 
-```
+```coq
 Parameter X Y : Set.
 Parameter P Q : X -> Prop.
 Parameter R : X -> Y -> Prop.
@@ -168,7 +168,7 @@ Parameter R : X -> Y -> Prop.
 
 Prouver en Coq les formules suivantes:
 
-```
+```coq
 Lemma distrib_forall_conj : (forall x, P x /\ Q x) <-> (forall x, P x) /\ (forall x, Q x).
 Lemma distrib_exists_disj : (exists x, P x \/ Q x) <-> (exists x, P x) \/ (exists x, Q x).
 Lemma switch_forall : (forall x, forall y, R x y) <-> (forall y, forall x, R x y).
@@ -183,6 +183,6 @@ de [TD 1](../td/td1.pdf). Pour
 simuler la règle de raisonnement par l'absurde, on pourra déclarer
 l'axiome suivant:
 
-```
+```coq
 Axiom not_not_elim : forall A : Prop, ~~A -> A.
 ```
