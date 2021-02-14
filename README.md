@@ -26,3 +26,4 @@ Contacter les enseignants pour obtenir les liens
 - Séance 2 (25/01) : [TD 1](td/td1.pdf) / [Questions corrigées durant la séance](td/td1-seance1-correction.pdf)
 - Séance 3 (01/02) : Suite du [TD 1](td/td1.pdf) / [Correction des questions portant sur les quantificateurs](td/td1-seance2-correction.pdf)
 - Séance 4 (08/02) : [TP 2](tp/tp2.md)
+- Séance 5 (15/02) : [TP 3](tp/tp3.md)
