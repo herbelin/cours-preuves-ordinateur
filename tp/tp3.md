@@ -41,6 +41,7 @@ utilisé en interne par la tactique `induction` (preuve par récurrence).
 Autres tactiques utiles :
 - `simpl` (simplifie le but lorsqu'il peut être réduit par calcul)
 - `rewrite H` (réécrit avec un lemme ou une hypothèse `H` dont la conclusion est une égalité)
+- `reflexivity` (permet de conclure une preuve si le but est `t = t`)
 - `discriminate` (permet de conclure une preuve si elle contient une hypothèse d'égalité entre deux constructeurs différents, par exemple `1 = 0`, c'est-à-dire `S O = O`)
 - `injection H as H` (permet de transformer une hypothèse `H : S x = S y` en `H : x = y`)
 - `f_equal` (permet de transformer un but `f x = f y` en `x = y`).
@@ -73,7 +74,7 @@ utiliser la commande `Definition` (vue au TP précédent, et avec
 laquelle on peut utiliser `unfold`) plutôt que `Fixpoint` (qui est
 spécifiquement dédié aux fonctions récursives).
 
-Montrer les lemmes suivants sur l'addition (égalités de base, puis associativité et commutativité). Déterminer quelles sont les égalités définitionnelles, c'est-à-dire prouvable par calcul et reflexivité (tactiques `simpl` et `reflexivity`). Pour les autres égalités, procédez par récurrence sur `n`, à l'aide de la tactique `induction`.
+Montrer les lemmes suivants sur l'addition (égalités de base, puis associativité et commutativité). Déterminer quelles sont les égalités définitionnelles, c'est-à-dire prouvable par calcul et reflexivité (tactiques `simpl` et `reflexivity`). Pour les autres égalités, procédez par récurrence sur `n`, à l'aide de la tactique `induction` (qui prend un argument, par exemple `induction n`).
 
 ```coq
 Lemma add_0_l : forall n, 0 + n = n.
