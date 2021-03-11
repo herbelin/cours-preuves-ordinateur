@@ -10,25 +10,31 @@ Pierre Letouzey (d'après A. Miquel)
 En Coq, on peut charger via les commandes suivantes la définition
 standard des listes, leurs notations, ainsi que des fonctions
 usuelles sur les listes et leur propriétés:
-```
+
+```coq
 Require Import List.
 Import ListNotations.
 ```
+
 Dans la bibliothèque Coq, ces *listes polymorphes* sont définies à l'aide de
 la définition inductive suivante (ne pas la retaper):
-```
+
+```coq
 Inductive list (A : Type) : Type :=
 | nil : list A
 | cons : A -> list A -> list A.
 ```
+
 Cette déclaration ajoute dans l'environnement courant un constructeur
 de type `list : Type->Type`, qui à chaque type `A:Type` associe le type
 correspondant `(list A) : Type` des listes à éléments dans `A`.
 Cette déclaration fournit également deux constructeurs polymorphes:
-```
+
+```coq
 nil   :  forall A : Type, list A
 cons  :  forall A : Type, A -> list A -> list A
 ```
+
 ainsi qu'un principe de récurrence `list_ind` permettant de raisonner
 sur les listes (par exemple via la tactique `induction ...`). Essayer de
 formuler ce principe de récurrence sur les listes, puis vérifier la
@@ -52,9 +58,11 @@ fournit `nil` et `cons` qui sont déjà en mode implicite, idem pour
 toutes les fonctions standards sur les listes. Pour vos propres définitions,
 vous pouvez activer globalement ce mode implicite via la commande
 suivante en tête de votre fichier:
-```
+
+```coq
 Set Implicit Arguments.
 ```
+
 Sinon, une autre approche possible est d'utiliser la syntaxe
 `{A:Type}` au lieu de `(A:Type)` pour les arguments de fonctions que
 l'on souhaite rendre implicites (cf. la définition de `app` ci-dessous).
@@ -73,13 +81,15 @@ similaires à OCaml sont disponibles (cf. la commande `Import ListNotations`):
 ## Concaténation de listes ##
 
 L'opération (polymorphe) de concaténation de listes est définie en Coq par:
-```
+
+```coq
 Fixpoint app {A:Type} (l1 l2 : list A) : list A :=
  match l1 with
  | [] => l2
  | x :: tl => x :: (app tl l2)
  end.
 ```
+
 Là encore, ne pas retaper cette définition, mais utiliser plutôt
 la version fournie par la bibliothèque standard, qui vient avec la
 notation `l1 ++ l2` pour `app l1 l2`.
@@ -87,8 +97,8 @@ notation `l1 ++ l2` pour `app l1 l2`.
   1. Quel est le type de `app` ?
   2. Montrer que pour toute liste `l`, on a `nil ++ l = l` ainsi
      que `l ++ nil = l`.
-     Laquelle de ces deux propositions correspond à une égalité
-     définitionnelle?
+     Laquelle de ces deux propositions correspond à une [égalité
+     définitionnelle](https://coq.inria.fr/refman/proofs/writing-proofs/rewriting.html#term-definitional-equality)?
   3. Montrer que l'opération de concaténation est associative.
 
 ## Longueur ##
