@@ -29,3 +29,4 @@ Contacter les enseignants pour obtenir les liens
 - Séance 5 (15/02) : [TP 3](tp/tp3.md)
 - Séance 6 (26/02) : [TD 2](td/td2.pdf)
 - Séance 7 (05/03) : Suite du [TD 2](td/td2.pdf)
+- Séance 8 (12/03) : [TP 4](tp/tp4.md)
