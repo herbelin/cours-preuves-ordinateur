@@ -85,6 +85,13 @@ Lemma add_assoc : forall n m p, (n + m) + p = n + (m + p).
 Lemma add_comm : forall n m, n + m = m + n.
 ```
 
+*Attention* : un lemme comme `add_comm` peut être difficile à utiliser dans la suite s'il y a plusieurs additions sur lequel il pourrait s'appliquer.
+Pour préciser où l'appliquer, vous pouvez spécifier les valeurs que doivent prendre `n` et/ou `m` en appelant la tactique `rewrite` comme ceci :
+
+```coq
+rewrite add_comm with (n := ...) (m := ...).
+```
+
 ### Exercice 2 : Multiplication ###
 
 En Coq, la multiplication est définie par
