@@ -50,6 +50,11 @@ votre réponse avec la commande `Check`) ?
 
 ### Exercice 2 : Logique classique ###
 
+Quelques tactiques supplémentaires qui peuvent être utiles :
+- `exfalso` remplace le but par `False` (similaire à la règle `⊥E` de la déduction naturelle) ;
+- `contradiction` conclue n'importe quel but si le contexte contient `A` et `~A` ;
+- `assert (H : ...)` introduit une proposition intermédiaire à prouver (une coupure).
+
 Dans cet exercice, on suppose la règle de raisonnement par
 l'absurde, que l'on déclare en Coq de la manière suivante :
 
