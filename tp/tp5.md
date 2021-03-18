@@ -9,9 +9,11 @@ Pierre Letouzey (d'après A. Miquel)
 ### Clôture réflexive-transitive, version 1 ###
 
 Commençons par considérer un type de données particulier:
-```
+
+```coq
 Parameter T:Type.
 ```
+
 Sur ce type `T`, on cherche à définir la clôture
 réflexive-transitive d'une relation `R:T->T->Prop`, à savoir la plus
 petite relation réflexive et transitive `R*` contenant `R`. Il est
@@ -26,12 +28,14 @@ règles suivantes:
      relation satisfaisant ces trois propriétés ?
 
 En Coq, cette définition inductive s'effectue de la manière suivante:
-```
+
+```coq
 Inductive clos1 (R : T -> T -> Prop) : T -> T -> Prop :=
 | cl1_base : forall x y, R x y -> clos1 R x y
 | cl1_refl : forall x, clos1 R x x
 | cl1_trans : forall x y z, clos1 R x y -> clos1 R y z -> clos1 R x z.
 ```
+
 La définition Coq ci-dessus, qui est paramétrée par la relation `R`,
 engendre en réalité:
 
@@ -49,6 +53,13 @@ engendre en réalité:
 
   3. Montrer que si `R` est symétrique, alors `clos1 R` l'est aussi.
 
+     *Remarque* : comme toujours on peut prouver par récurrence une propriété
+     en utilisant la tactique `induction` qu'on appelle sur un élément d'un
+     type inductif.
+     Dans les TP précédents, on faisait donc des récurrences sur des entiers
+     naturels ou des listes. Dans ce TP, on fait des récurrences sur des
+     propositions (`induction H`).
+
   4. Montrer que l'opération de clôture réflexive-transitive est idempotente:
      `clos1 (clos1 R) x y -> clos1 R x y` pour tous `x y:T`.
 
@@ -65,7 +76,8 @@ deux règles suivantes:
 Notez l'usage de `R` (et non `R*`) au milieu de la règle précédente.
 Cette définition alternative se modélise en Coq au moyen de la
 définition inductive suivante:
-```
+
+```coq
 Inductive clos2 (R : T -> T -> Prop) : T -> T -> Prop :=
 | cl2_refl : forall x, clos2 R x x
 | cl2_next : forall x y z, clos2 R x y -> R y z -> clos2 R x z.
@@ -95,7 +107,8 @@ prédicats.
 Une troisième définition de la clôture réflexive-transitive d'une
 relation `R` est alors donnée par la réunion des puissances successives de
 `R`, c'est-à-dire par:
-```
+
+```coq
 Definition clos3 (R : T -> T -> Prop) (x y : T) := exists n, puiss R n x y.
 ```
 
