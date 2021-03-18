@@ -94,7 +94,7 @@ Là encore, ne pas retaper cette définition, mais utiliser plutôt
 la version fournie par la bibliothèque standard, qui vient avec la
 notation `l1 ++ l2` pour `app l1 l2`.
 
-  1. Quel est le type de `app` ?
+  1. Quel est le type de `app` ? (Vérifier la réponse avec `Check app.`)
   2. Montrer que pour toute liste `l`, on a `nil ++ l = l` ainsi
      que `l ++ nil = l`.
      Laquelle de ces deux propositions correspond à une [égalité
@@ -105,8 +105,6 @@ notation `l1 ++ l2` pour `app l1 l2`.
 
   1. Définir une fonction `length : forall {A:Type}, list A -> nat`
      telle que `length l` retourne la longueur de la liste `l`.
-     Vérifier que vous avez bien retrouvé la définition standard de
-     `length` fournie par le système.
   2. Montrer que `length (l1 ++ l2) = length l1 + length l2`
      pour toutes listes `l1` et `l2`.
 
@@ -121,5 +119,6 @@ notation `l1 ++ l2` pour `app l1 l2`.
   2. Montrer que `length (rev l) = length l`.
   3. Montrer que `rev (l1 ++ l2) = (rev l2) ++ (rev l1)`.
 
-*Remarque*: Pour résoudre ces questions, il est utile d'énoncer
-des lemmes intermédiaires!
+*Remarques*:
+- Pour résoudre ces questions, il est utile d'énoncer des lemmes intermédiaires !
+- Si vous obtenez une hypothèse de récurrence trop spécifique et inutilisable, cela peut vouloir dire que vous n'auriez pas dû introduire toutes les variables avant d'appeler `induction`. Ne pas hésiter à introduire moins, ou à utiliser `revert x`.
