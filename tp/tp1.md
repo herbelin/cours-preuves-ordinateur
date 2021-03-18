@@ -5,12 +5,13 @@ M1 Informatique - Preuves Assistées par Ordinateur
 
 Pierre Letouzey (d'après A. Miquel)
 
-> La documentation du système Coq est consultable en ligne:
-> https://coq.inria.fr/documentation
+La documentation du système Coq est consultable en ligne:
+https://coq.inria.fr/documentation
 
 ### Démarrage du système ###
 
-Pour utiliser Coq, vous aurez besoin d'installer le logiciel ainsi
+Pour utiliser Coq, vous aurez besoin
+d'[installer le logiciel](https://coq.inria.fr/download) ainsi
 qu'une interface utilisateur.  Les options sont :
 
 - [JsCoq](https://x80.org/collacoq) (Coq directement dans un
@@ -103,14 +104,17 @@ Lemma and_commut :
   forall A B : Prop, A /\ B <-> B /\ A.
 Proof.
  intros. split.
- - intros. destruct H. split. assumption. assumption.
+ - intros. destruct H.
+   split.
+   + assumption.
+   + assumption.
  - intros. destruct H. split; assumption.
 Qed.
 ```
 
 Lorsque les tactiques sont séparées par des points, Coq va alors les
 exécuter pas-à-pas. On peut aussi utiliser le `;` pour **chaîner** des
-tactiques. Ainsi `split;assumption` fait agir `assumption` sur les
+tactiques. Ainsi `split; assumption` fait agir `assumption` sur les
 deux sous-buts créés par `split`.
 
 Les tactiques construisent un "terme de preuve". Essayez d'insérer des
@@ -156,6 +160,19 @@ Lemma distrib_conj_impl : A -> (B /\ C) <-> (A -> B) /\ (A -> C).
 Lemma distrib_disj_impl : (A \/ B) -> C <-> (A -> C) /\ (B -> C).
 ```
 
+Pour cet exercice, il vous sera utile d'avoir en tête les tactiques suivantes:
+
+- `intro` / `intros` pour introduire des hypothèses (similaire à la règle `=>I` de la déduction naturelle) ;
+- `assumption` pour conclure en utilisant une hypothèse du contexte (similaire à la règle `Axiom` de la déduction naturelle) ;
+- `apply` pour utiliser une hypothèse ou un lemme pour prouver le but (similaire à la règle `=>E` de la déduction naturelle) ;
+- `destruct` pour destructurer un `/\` ou un `\/` dans le contexte (similaire aux règles `/\E` et `\/E` de la déduction naturelle) ;
+- `split` pour prouver un `/\` en prouvant les deux côtés (similaire à la règle `/\I` de la déduction naturelle) ;
+- `left` et `right` pour prouver un `\/` en prouvant l'un des deux côtés (similaire aux règles `\/I` de la déduction naturelle).
+
+Face à un but `~A`, `intros` tout court ne fait rien, mais `intro` ou `intro H` fonctionnent (forcent l'interprétation de `~A` en `A -> False`).
+
+Pour utiliser `apply`, il faut que la conclusion de l'hypothèse ou du lemme corresponde au but courant, mais certains cas étendus sont aussi supportés (quand la conclusion de l'hypothèse ou du lemme est un `/\` ou un `<->`).
+
 ### Exercice 2 :  Calcul des prédicats ###
 
 Après avoir effectué les déclarations suivantes:
@@ -175,6 +192,8 @@ Lemma switch_forall : (forall x, forall y, R x y) <-> (forall y, forall x, R x y
 Lemma switch_exists : (exists x, exists y, R x y) <-> (exists x, exists y, R x y).
 Lemma switch_forall_exists : (exists y, forall x, R x y) -> forall x, exists y, R x y.
 ```
+
+Pour cet exercice, vous aurez également besoin de savoir que `destruct` fonctionne sur les hypothèses de la forme `exists x, P` (similaire à la règle `∃E` de la déduction naturelle) et de connaître la tactique `exists` (qui prend le témoin en argument, similaire à la règle `∃I` de la déduction naturelle). Pour le symbole, `∀`, c'est à nouveau `intros` et `apply` qu'il faut utiliser.
 
 ### Exercice 3 : logique classique ###
 
