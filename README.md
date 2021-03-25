@@ -5,7 +5,7 @@
 12 semaines à partir du 18 janvier 2021
 
 - Cours : lundi 8h30-10h30 en visio sur Big Blue Button jusque nouvel ordre (Hugo Herbelin)
-- TP/TD : lundi 10h45-12h45 en visio dans la même salle Big Blue Button (Théo Zimmermann)
+- TP/TD : vendredi 8h30-10h30 en visio sur Big Blue Button (Théo Zimmermann)
 
 Contacter les enseignants pour obtenir les liens
 
