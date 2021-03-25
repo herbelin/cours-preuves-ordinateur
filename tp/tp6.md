@@ -23,7 +23,8 @@ La question est alors de savoir si le mot `MU` fait partie du langage
 
 On se propose de formaliser ce problème en Coq. Pour cela, on
 introduit les définitions suivantes :
-```
+
+```coq
 Require Import List.
 Import ListNotations.
 
@@ -44,7 +45,7 @@ liste de lettres. Par exemple, le mot `MI` correspond ainsi à la liste
 `[M;I]`, cette syntaxe étant un raccourci pour `M::I::nil`, lui même
 correspondant à `cons M (cons I nil)`. Et la concaténation de
 mots est ici la concaténation de listes `++` (nommée `app` en
-Coq). Pour plus d'explications sur le type des listes, revoir le TD6.
+Coq). Pour plus d'explications sur le type des listes, revoir le TP4.
 Enfin, l'appartenance au langage `L` est modélisé en Coq
 sous la forme du prédicat `lang : word->Prop`.
 
@@ -61,7 +62,7 @@ nombre d'occurrences de la lettre `I` qui n'est pas un multiple de
 trois. Pour cela, on formalise d'abord l'arithmétique modulo 3 en
 Coq à partir de la définition inductive suivante:
 
-```
+```coq
 Inductive Z3 := Z0 | Z1 | Z2.
 ```
  
