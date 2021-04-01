@@ -32,6 +32,7 @@ Contacter les enseignants pour obtenir les liens
 - Séance 8 (12/03) : [TP 4](tp/tp4.md)
 - Séance 9 (19/03) : [TP 5](tp/tp5.md)
 - Séance 10 (26/03) : [TP 6](tp/tp6.md)
+- Séance 11 (02/04) : [TD 3](td/td3.pdf)
 
 #### Projet
 
