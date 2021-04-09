@@ -40,7 +40,12 @@ Il est conseillé d'utiliser la commande `Set Implicit Arguments` pour
  3. Ouvrir une section avec la commande `Section Triple`, et
     déclarer une variable locale `X : Type` à l'intérieur de cette section à
     l'aide de la commande `Variable X : Type`.
- 4. Définir un type `triple : Type` des triplets `(x, y, z)` d'éléments de `X`.
+ 4. Définir un type `triple : Type` des triplets `(x, y, z)` d'éléments de `X`
+    (indice : peut être fait en définissant un nouveau `Inductif` ou avec une `Definition`).
+
+    Pour pouvoir utiliser la notation `A * B` pour un produit de types (et non un produit d'entiers naturels),
+    vous aurez besoin au préalable d'appeler la commande `Open Scope type.` pour que Coq comprenne comment interpréter
+    ce symbole dans ce contexte.
  5. Définir une fonction `triple_x : X -> triple` qui à tout
     `x : X` associe le triplet `(x, x, x)`.
  6. Définir une fonction `triple_map : (X -> X) -> triple -> triple` qui à une fonction `f` et à
