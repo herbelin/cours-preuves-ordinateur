@@ -37,6 +37,7 @@ Voir aussi le petit rappel des tactiques de base tout en bas.
 - `andb_true_iff : forall b1 b2 : bool, b1 && b2 = true <-> b1 = true /\ b2 = true`
 - `List.existsb_exists : forall (A : Type) (f : A -> bool) (l : list A),
   List.existsb f l = true <-> (exists x : A, List.In x l /\ f x = true)`
+- `Nat.eqb_eq: forall n m : nat, (n =? m) = true <-> n = m`
 
 ### sur les listes ###
 
