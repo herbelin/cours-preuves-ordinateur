@@ -1,11 +1,11 @@
-# Cours Preuves assistées par ordinateur (hiver 2021)
+# Cours Preuves assistées par ordinateur (hiver 2022)
 
 #### Horaires
 
-12 semaines à partir du 18 janvier 2021
+12 semaines à partir du 17 janvier 2022
 
-- Cours : lundi 8h30-10h30 en visio sur Big Blue Button jusque nouvel ordre (Hugo Herbelin)
-- TP/TD : vendredi 8h30-10h30 en visio sur Big Blue Button (Théo Zimmermann)
+- Cours : lundi 8h30-10h30 en visio sur [Big Blue Button](https://bbb-front.math.univ-paris-diderot.fr/recherche/hug-cu1-eym-m5i) jusqu'à nouvel ordre (Hugo Herbelin)
+- TP/TD : vendredi 14h-16h en présentiel (Théo Zimmermann)
 
 Contacter les enseignants pour obtenir les liens
 
@@ -22,19 +22,5 @@ Contacter les enseignants pour obtenir les liens
 
 #### Séances TP / TD
 
-- Séance 1 (18/01) : [TP 1](tp/tp1.md)
-- Séance 2 (25/01) : [TD 1](td/td1.pdf) / [Questions corrigées durant la séance](td/td1-seance1-correction.pdf)
-- Séance 3 (01/02) : Suite du [TD 1](td/td1.pdf) / [Correction des questions portant sur les quantificateurs](td/td1-seance2-correction.pdf)
-- Séance 4 (08/02) : [TP 2](tp/tp2.md)
-- Séance 5 (15/02) : [TP 3](tp/tp3.md)
-- Séance 6 (26/02) : [TD 2](td/td2.pdf)
-- Séance 7 (05/03) : Suite du [TD 2](td/td2.pdf)
-- Séance 8 (12/03) : [TP 4](tp/tp4.md)
-- Séance 9 (19/03) : [TP 5](tp/tp5.md)
-- Séance 10 (26/03) : [TP 6](tp/tp6.md)
-- Séance 11 (02/04) : [TD 3](td/td3.pdf) / [Correction rédigée de l'exercice 2](td/td3-ex2-corrige.pdf)
-- Séance 12, dernière séance (09/04) : [TP 7](tp/tp7.md)
-
 #### Projet
 
-Voir [projet](projet).
