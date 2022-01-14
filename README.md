@@ -5,7 +5,7 @@
 12 semaines à partir du 17 janvier 2022
 
 - Cours : lundi 8h30-10h30 en visio sur [Big Blue Button](https://bbb-front.math.univ-paris-diderot.fr/recherche/hug-cu1-eym-m5i) jusqu'à nouvel ordre (Hugo Herbelin)
-- TP/TD : vendredi 14h-16h en présentiel (Théo Zimmermann)
+- TP/TD : vendredi 14h-16h en présentiel, salle 2031 (Théo Zimmermann)
 
 Contacter les enseignants pour obtenir les liens
 
