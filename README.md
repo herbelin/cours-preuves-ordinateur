@@ -30,5 +30,7 @@ Contacter les enseignants pour obtenir les liens
 
 #### Séances TP / TD
 
+- Séance 1 : [TD 1](td/td1.pdf) ([quelques questions corrigées](td/correction-td1-seance1.pdf))
+
 #### Projet
 
