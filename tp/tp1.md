@@ -156,8 +156,8 @@ Lemma double_neg_excluded_middle : ~~(A \/ ~A).
 Lemma iso_curry : (A /\ B -> C) <-> (A -> B -> C).
 Lemma distrib_conj : A /\ (B \/ C) <-> (A /\ B) \/ (A /\ C).
 Lemma distrib_disj : A \/ (B /\ C) <-> (A \/ B) /\ (A \/ C).
-Lemma distrib_conj_impl : A -> (B /\ C) <-> (A -> B) /\ (A -> C).
-Lemma distrib_disj_impl : (A \/ B) -> C <-> (A -> C) /\ (B -> C).
+Lemma distrib_conj_impl : (A -> (B /\ C)) <-> (A -> B) /\ (A -> C).
+Lemma distrib_disj_impl : ((A \/ B) -> C) <-> (A -> C) /\ (B -> C).
 ```
 
 Pour cet exercice, il vous sera utile d'avoir en tête les tactiques suivantes:
