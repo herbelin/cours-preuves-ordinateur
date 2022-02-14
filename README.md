@@ -18,14 +18,15 @@ Contacter les enseignants pour obtenir les liens
 #### Plan prospectif
 
 - Cours 1 : [Contexte historique](cours1.pdf), règles d'inférence de la déduction naturelle ([section 2.1 du poly PP](proofs-and-programs.pdf))
-- Cours 2 : Règles d'inférence de la déduction naturelle (suite), élimination des coupures, correspondance preuves-programmes ([section 3.1 du poly PP](proofs-and-programs.pdf))
-- Cours 3 : Correspondance preuves-programmes, élimination des coupures, β-réduction, coupures commutatives, propriété de la sous-formule ([Théorème 5 du poly PP](proofs-and-programs.pdf)), inversibilité de l'introduction des connecteurs négatifs, contextes d'évaluation
-- Cours 4 : Règles η, inversibilité de l'élimination des connecteurs positifs, ...
-- Cours 5 et 6 : Types inductifs, itérateur / récurseur / analyse de cas / point fixe, Coq's `match`/fix`
-- Cours 7 : Récursion bien fondée, récursion gardée et non gardée
-- Cours 8 et 9 : Une hiérarchie de force logique et d'expressivité calculatoire (PRA, PA, PA₂, ZF)
-- Cours 10 : Système F, coinduction
-- Cours 11 : Familles inductives
+- Cours 2 : Règles d'inférence de la déduction naturelle (suite), élimination des coupures, lambda-calcul simplement typé, correspondance preuves-programmes ([section 3.1 du poly PP](proofs-and-programs.pdf))
+- Cours 3 : Lambda-calcul simplement typé, correspondance preuves-programmes, élimination des coupures, β-réduction, coupures commutatives, propriété de la sous-formule ([Théorème 5 du poly PP](proofs-and-programs.pdf)), inversibilité de l'introduction des connecteurs négatifs, contextes d'évaluation
+- Cours 4 : Correspondance preuves-programmes, règles η, inversibilité de l'élimination des connecteurs positifs, ...
+- Cours 5 : Quantificateurs
+- Cours 6 et 7 : Types inductifs, itérateur / récurseur / analyse de cas / point fixe, Coq's `match`/fix`
+- Cours 8 : Récursion bien fondée, récursion gardée et non gardée
+- Cours 9 et 10 : Une hiérarchie de force logique et d'expressivité calculatoire (PRA, PA, PA₂, ZF)
+- Cours 11 : Système F, coinduction
+- Cours 12 : Familles inductives
 - Cours 12 : Synthèse
 
 #### Séances TP / TD
