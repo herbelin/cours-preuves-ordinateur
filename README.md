@@ -33,6 +33,8 @@ Contacter les enseignants pour obtenir les liens
 
 - Séance 1 (28 janvier) : [TD 1](td/td1.pdf) ([quelques questions corrigées](td/correction-td1-seance1.pdf))
 - Séance 2 (4 février) : [TP 1](tp/tp1.md)
+- Séance 3 (11 février) : Suite du [TD 1](td/td1.pdf)
+- Séance 4 (18 février) : [TP 2](tp/tp2.md)
 
 #### Projet
 
