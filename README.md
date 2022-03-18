@@ -37,6 +37,7 @@ Contacter les enseignants pour obtenir les liens
 - Séance 4 (18 février) : [TP 2](tp/tp2.md)
 - Séance 5 (25 février) : Suite du [TD 1](td/td1.pdf) et début du [TD 2](td/td2.pdf)
 - Séance 6 (11 mars) : [TP 3](tp/tp3.md)
+- Séance 7 (18 mars) : [TP 4](tp/tp4.md)
 
 #### Projet
 
