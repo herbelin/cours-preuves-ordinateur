@@ -4,9 +4,10 @@
 (******               Pierre Letouzey                      *******)
 (*****************************************************************)
 
-Require Import String Datatypes Arith NPeano List Omega.
+Require Import String Datatypes Arith NPeano List Lia.
 Open Scope string_scope.
 Open Scope list_scope.
+Open Scope nat_scope.
 
 (** Travail demandé :
     a) Enlever l'axiome TODO et remplacer ses usages par du code
@@ -101,13 +102,13 @@ Qed.
 Lemma get_app_r0 {A} (l l':list A)(n:nat) : n = length l ->
   list_get (l++l') n = list_get l' 0.
 Proof.
-  intros. rewrite <- (get_app_r l l'). f_equal. omega.
+  intros. rewrite <- (get_app_r l l'). f_equal. lia.
 Qed.
 
 Lemma get_app_r' {A} (l l':list A)(n:nat) : length l <= n ->
   list_get (l++l') n = list_get l' (n-length l).
 Proof.
- intros. rewrite <- (get_app_r l l'). f_equal. omega.
+ intros. rewrite <- (get_app_r l l'). f_equal. lia.
 Qed.
 
 Lemma get_None {A} (l:list A) n :
