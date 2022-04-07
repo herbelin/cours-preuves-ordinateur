@@ -40,6 +40,7 @@ Contacter les enseignants pour obtenir les liens
 - Séance 7 (18 mars) : [TP 4](tp/tp4.md)
 - Séance 8 (25 mars) : [TP 5](tp/tp5.md)
 - Séance 9 (1er avril) : [TP 6](tp/tp6.md)
+- Séance 10 (8 avril) : Suite du [TD 2](td/td2.pdf)
 
 #### Projet
 
