@@ -14,7 +14,7 @@ Pour utiliser Coq, vous aurez besoin
 d'[installer le logiciel](https://coq.inria.fr/download) ainsi
 qu'une interface utilisateur.  Les options sont :
 
-- [JsCoq](https://x80.org/collacoq) (Coq directement dans un
+- [JsCoq](https://jscoq.github.io/) (Coq directement dans un
   navigateur web)
 - [CoqIDE](https://coq.inria.fr/refman/practical-tools/coqide.html)
   (généralement distribué avec Coq)
