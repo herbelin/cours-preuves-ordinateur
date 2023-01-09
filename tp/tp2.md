@@ -62,7 +62,7 @@ l'absurde, que l'on déclare en Coq de la manière suivante :
 Axiom not_not_elim : forall A : Prop, ~~A -> A.
 ```
 
-  1. Montrer en Coq que cet axiome entraîne le tiers-exclus : `forall A : Prop, A \/ ~ A`.
+  1. Montrer en Coq que cet axiome entraîne le tiers-exclu : `forall A : Prop, A \/ ~ A`.
 
 On se propose maintenant de formaliser le paradoxe des buveurs, dû à Smullyan:
 
