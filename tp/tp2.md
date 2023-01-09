@@ -72,7 +72,7 @@ On se propose maintenant de formaliser le paradoxe des buveurs, dû à Smullyan:
 
   2. Déclarer en Coq les divers éléments du problème (en s'inspirant de l'exercice précédent).
   
-  3. Énoncer le paradoxe et en effectuer la preuve (laquelle repose sur le tiers-exclus).
+  3. Énoncer le paradoxe et en effectuer la preuve (laquelle repose sur le tiers-exclu).
 
 ### Exercice 3 : Sous-ensembles ###
 
