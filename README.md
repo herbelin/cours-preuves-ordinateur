@@ -7,6 +7,14 @@
 - Cours : mercredi 10h45-12h45, salle Condorcet 86A (Hugo Herbelin)
 - TP/TD : vendredi 11h-13h, salle 2001 (Théo Zimmermann)
 
+#### Objectifs du cours
+
+Dans une société toujours plus dépendante du bon fonctionnement des
+programmes informatiques, le cours combinera une introduction aux
+principes de base de la preuve des programmes (la logique) et une
+introduction à l'utilisation du logiciel Coq pour la
+preuve de correction effective des programmes.
+
 #### Notes de cours
 
 - [Introduction à la logique du 1er ordre](logique-premier-ordre.pdf) (notes d'Alexandre Miquel pour la version initialle du cours en 2008)
