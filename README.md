@@ -1,13 +1,11 @@
-# Cours Preuves assistées par ordinateur (hiver 2022)
+# Cours Preuves assistées par ordinateur (hiver 2023)
 
 #### Horaires
 
-12 semaines à partir du 17 janvier 2022 (à partir du 28 janvier pour les TD / TP).
+12 semaines à partir du 18 janvier 2023 (à partir du 20 janvier pour les TD / TP).
 
-- Cours : lundi 8h30-10h30 en visio sur [Big Blue Button](https://bbb-front.math.univ-paris-diderot.fr/recherche/hug-cu1-eym-m5i) jusqu'à nouvel ordre (Hugo Herbelin)
-- TP/TD : vendredi 14h-16h en présentiel, salle 2031 (Théo Zimmermann)
-
-Contacter les enseignants pour obtenir les liens
+- Cours : mercredi 10h45-12h45, salle Condorcet 86A (Hugo Herbelin)
+- TP/TD : vendredi 11h-13h, salle 2001 (Théo Zimmermann)
 
 #### Notes de cours
 
@@ -31,22 +29,22 @@ Contacter les enseignants pour obtenir les liens
 
 #### Séances TP / TD
 
-- Séance 1 (28 janvier) : [TD 1](td/td1.pdf) ([quelques questions corrigées](td/correction-td1-seance1.pdf))
-- Séance 2 (4 février) : [TP 1](tp/tp1.md)
-- Séance 3 (11 février) : Suite du [TD 1](td/td1.pdf)
-- Séance 4 (18 février) : [TP 2](tp/tp2.md)
-- Séance 5 (25 février) : Suite du [TD 1](td/td1.pdf) et début du [TD 2](td/td2.pdf)
-- Séance 6 (11 mars) : [TP 3](tp/tp3.md)
-- Séance 7 (18 mars) : [TP 4](tp/tp4.md)
-- Séance 8 (25 mars) : [TP 5](tp/tp5.md)
-- Séance 9 (1er avril) : [TP 6](tp/tp6.md)
-- Séance 10 (8 avril) : Suite du [TD 2](td/td2.pdf)
-- Séance 11 (15 avril) : [TD 3](td/td3.pdf)
-- Séance 12 (22 avril) : [TP 7](tp/tp7.md)
+- Séance 1 (20 janvier) : [TD 1](td/td1.pdf) ([quelques questions corrigées](td/correction-td1-seance1.pdf))
+- Séance 2 (27 février) : [TP 1](tp/tp1.md)
+- Séance 3 (3 février) : Suite du [TD 1](td/td1.pdf)
+- Séance 4 (10 février) : [TP 2](tp/tp2.md)
+- Séance 5 (17 février) : Suite du [TD 1](td/td1.pdf) et début du [TD 2](td/td2.pdf)
+- Séance 6 (3 mars) : [TP 3](tp/tp3.md)
+- Séance 7 (10 mars) : [TP 4](tp/tp4.md)
+- Séance 8 (17 mars) : [TP 5](tp/tp5.md)
+- Séance 9 (24 mars) : [TP 6](tp/tp6.md)
+- Séance 10 (31 mars) : Suite du [TD 2](td/td2.pdf)
+- Séance 11 (7 avril) : [TD 3](td/td3.pdf)
+- Séance 12 (14 avril) : [TP 7](tp/tp7.md)
 
 #### Projet
 
-Sujet : [projet.v](projet.v).
+Sujet 2022 : [projet.v](projet.v).
 
 - Vous pouvez le faire seul ou en binôme.
 - Le but est de remplacer les `TODO` et les `Admitted`.
