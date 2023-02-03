@@ -28,7 +28,7 @@ qu'une interface utilisateur.  Les options sont :
 Les différentes interfaces proposent une disposition assez similaire :
 le fichier en cours d'édition est à gauche, tandis que les preuves en
 cours seront affichées en haut à droite, et les messages du système en
-bas à droite (réponses de Coq ou messages d'erreurs).
+bas ou en bas à droite (réponses de Coq ou messages d'erreurs).
 
 ### Commandes Coq ###
 
