@@ -170,6 +170,7 @@ Pour cet exercice, il vous sera utile d'avoir en tête les tactiques suivantes:
 - `left` et `right` pour prouver un `\/` en prouvant l'un des deux côtés (similaire aux règles `\/I` de la déduction naturelle).
 
 Face à un but `~A`, `intros` tout court ne fait rien, mais `intro` ou `intro H` fonctionnent (forcent l'interprétation de `~A` en `A -> False`).
+Vous pouvez aussi appeler la tactique `unfold not` pour remplacer les occurrences de `~A` en `A -> False` (`unfold` n'agit que dans le but, mais vous pouvez aussi agir dans le contexte avec `unfold not in *`).
 
 Pour utiliser `apply`, il faut que la conclusion de l'hypothèse ou du lemme corresponde au but courant, mais certains cas étendus sont aussi supportés (quand la conclusion de l'hypothèse ou du lemme est un `/\` ou un `<->`).
 
