@@ -40,8 +40,8 @@ preuve de correction effective des programmes.
 - Séance 1 (20 janvier) : [TD 1](td/td1.pdf) ([correction](td/correction-td1-seance1.pdf))
 - Séance 2 (27 janvier) : Suite du [TD 1](td/td1.pdf)
 - Séance 3 (3 février) : [TP 1](tp/tp1.md)
-- Séance 4 (10 février) :
-- Séance 5 (17 février) :
+- Séance 4 (10 février) : Suite du [TD 1](td/td1.pdf)
+- Séance 5 (17 février) : [TP 2](tp/tp2.md)
 
 #### Projet
 
