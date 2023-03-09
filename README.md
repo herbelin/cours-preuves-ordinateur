@@ -42,8 +42,13 @@ preuve de correction effective des programmes.
 - Séance 3 (3 février) : [TP 1](tp/tp1.md)
 - Séance 4 (10 février) : Suite du [TD 1](td/td1.pdf)
 - Séance 5 (17 février) : [TP 2](tp/tp2.md)
+- Séance 6 (24 février) : [TD 2](td/td2.pdf)
+- Séance 7 (10 mars) : [TP 3](tp/tp3.md)
+- Séance 8 (17 mars) : [TP 4](tp/tp4.md)
 
 #### Projet
+
+Sera mis à jour prochainement...
 
 Sujet 2022 : [projet.v](projet.v).
 
