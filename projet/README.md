@@ -7,11 +7,9 @@ Ce projet porte sur les expressions régulières ([regexps][]) et les [dérivée
 
 Ce projet peut se faire par binôme d'au plus deux étudiants.
 
-Les dates de soutenance seront fixés ultérieurement.
-
 **Attention** : faire l'intégralité des preuves de ce projet serait vraiment
 **très** long, mais il forme une unité que nous avons tenu à vous fournir malgré
-tout. Par contre plusieurs fichiers sont **optionnels**. La partie obligatoire
+tout. Ainsi, plusieurs fichiers sont **optionnels**. La partie obligatoire
 de ce projet consiste en :
 
   - Les deux fichiers de la partie 1 : [Languages.v](Languages.v) et [Regular.v](Regular.v). **À rendre pour le 5 mai.**
@@ -23,10 +21,11 @@ les `Admitted` par des preuves Coq sans axiomes. Il se peut que certaines preuve
 soient déjà fournies. Vous pouvez ajouter librement des lemmes intermédiaires
 ou toutes commandes facilitant vos preuves (p.ex. des `Hint`). Par contre ne modifiez
 pas les enoncés et les définitions fournies (`Definition`, `Fixpoint`, ...) sans
-notre autorisation.
+notre accord.
 
-Les fichiers optionnels [RegOrder.v](RegOrder.v) et [Similar.v](Similar.v) sont à lire
-malgré tout, vu que les notions qui y sont définies et les résultats qui y sont enoncés
+Le projet contient aussi deux fichiers optionnels [RegOrder.v](RegOrder.v) et [Similar.v](Similar.v), qui doivent être lus
+et compilés avec le reste
+car les notions qui y sont définies et les résultats qui y sont enoncés
 vont resservir dans la suite. Mais il ne vous est pas demandé de prouver les `Admitted`
 qui sont dans ces fichiers. Ceci dit, ce n'est pas interdit non plus...
 
