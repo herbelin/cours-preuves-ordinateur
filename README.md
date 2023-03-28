@@ -49,20 +49,7 @@ preuve de correction effective des programmes.
 
 #### Projet
 
-Sera mis à jour prochainement...
-
-Sujet 2022 : [projet.v](projet.v).
-
-- Vous pouvez le faire seul ou en binôme.
-- Le but est de remplacer les `TODO` et les `Admitted`.
-- Vous pouvez vous servir de toutes les tactiques vues en cours / TP, mais aussi de toute autre tactique et de tout lemme disponible dans la bibliothèque de Coq (sans oublier les lemmes mis à disposition dans la partie I du projet). Notamment :
-  - `lia` (apès `Require Import Lia`) : tactique automatique pour les buts purement arithmétiques.
-  - `auto` / `eauto` : tactiques permettant d'exploiter les déclarations de `Hint` dispersées à travers le projet.
-- Le sujet comporte des indications dans les commentaires : lisez-les.
-- Il est possible de sauter des preuves et de se servir des lemmes néanmoins dans la suite.
-- Ne restez pas bloqués sans solliciter de l'aide (notamment par mail). N'hésitez pas non plus à demander des conseils en tout genre.
-- La partie V est entièrement optionnelle.
-- Le projet sera à rendre au moment de la période d'examen et sera accompagné de soutenances.
+Cf. [projet/README.md](projet/README.md)
 
 #### Examens
 
