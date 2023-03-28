@@ -28,10 +28,10 @@ preuve de correction effective des programmes.
 - Cours 3 : Lambda-calcul simplement typé, correspondance preuves-programmes, élimination des coupures, propriété de la sous-formule ([Théorème 5 du poly PP](proofs-and-programs.pdf)), formes normales, normalisation
 - Cours 4 : Règles η, inversibilité de l'introduction des connecteurs négatifs et de l'élimination des connecteurs positifs, admissibilité de la contractione et de l'affaiblissement
 - Cours 5 : Coupures commutatives, logique classique et opérateurs de contrôle, contextes d'évaluation
-- Cours 6 et 7 : Types inductifs, itérateur / récurseur / analyse de cas / point fixe, Coq's `match`/fix`
-- Cours 8 : Récursion bien fondée, récursion gardée et non gardée
-- Cours 9 et 10 : Une hiérarchie de force logique et d'expressivité calculatoire (PRA, PA, PA₂, ZF)
-- Cours 11 : Système F, coinduction
+- Cours 6 et 7 et 8 : Types inductifs, itérateur / récurseur / analyse de cas / point fixe / récurrence / analyse de cas dépendante
+- Cours 9 : Coq's `match`/fix`, récursion gardée, système F, codage de Church
+- Cours 10 : Une hiérarchie de force logique et d'expressivité calculatoire (PRA, PA, PA₂, ZF)
+- Cours 11 : coinduction
 - Cours 12 : Familles inductives
 - Cours 12 : Synthèse
 
