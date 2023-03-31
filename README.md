@@ -46,6 +46,7 @@ preuve de correction effective des programmes.
 - Séance 7 (10 mars) : [TP 3](tp/tp3.md)
 - Séance 8 (17 mars) : [TP 4](tp/tp4.md)
 - Séance 9 (24 mars) : [TP 5](tp/tp5.md)
+- Séance 10 (31 mars) : [TP 6](tp/tp6.md)
 
 #### Projet
 
