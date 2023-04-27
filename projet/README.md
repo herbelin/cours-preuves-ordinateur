@@ -148,6 +148,8 @@ récurrence, à l'aide de la tactique
 
 ## Quelques conseils par fichiers : Regular.v ##
 
+Attention : pour réutiliser les lemmes de `Langages.v`, notez que ceux-ci ont été encapsulés dans un module `Lang`. Vous aurez donc besoin de préfixer le nom des lemmes par `Lang.` pour les utiliser.
+
 On utilise ici plusieurs fonctions booléennes, telle que
  - `Letter.eqb` (le test d'égalité entre deux lettres)
  - `is_nullable` (le test detectant si une regexp accepte le mot vide)
