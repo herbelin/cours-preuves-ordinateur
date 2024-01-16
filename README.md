@@ -1,4 +1,4 @@
-# Cours Preuves assistées par ordinateur (hiver 2023)
+# Cours Preuves assistées par ordinateur (hiver 2024)
 
 #### Horaires
 
@@ -43,6 +43,6 @@ preuve de correction effective des programmes.
 
 - [examen 2022](examens/examen-2022.pdf) avec sa [correction partielle](examens/examen-correction-2022.pdf) et le [code Coq](examens/examen_correction_2022.v) correspondant
 
-- [examen 2023](examens/examen-2023.pdf) avec sa [correction](examens/examen-correction-2023.v)
+- [examen 2023](examens/examen-2023.pdf) avec sa [correction](examens/examen_correction_2023.v)
 
 
