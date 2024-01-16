@@ -37,6 +37,8 @@ preuve de correction effective des programmes.
 
 #### Projet
 
+Le projet sera donné ultérieurement.
+
 #### Examens
 
 - [examen 2021](examens/examen-2021.pdf) avec sa [correction](examens/examen-correction-2021.pdf) et le [code Coq](examens/examen_correction_2021.v) correspondant
