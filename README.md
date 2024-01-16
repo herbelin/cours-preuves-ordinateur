@@ -2,10 +2,10 @@
 
 #### Horaires
 
-12 semaines à partir du 18 janvier 2023 (à partir du 20 janvier pour les TD / TP).
+12 semaines à partir du 26 janvier 2024 (à partir du 26 janvier aussi pour les TD / TP).
 
-- Cours : mercredi 10h45-12h45, salle Condorcet 86A (Hugo Herbelin)
-- TP/TD : vendredi 11h-13h, salle 2001 (Théo Zimmermann)
+- Cours : vendredi 10h45-12h45, salle 1003 (Hugo Herbelin)
+- TP/TD : vendredi 16h15-18h15, salle 1003 (Thierry Martinez)
 
 #### Objectifs du cours
 
@@ -31,31 +31,18 @@ preuve de correction effective des programmes.
 - Cours 6 et 7 et 8 : Types inductifs, itérateur / récurseur / analyse de cas / point fixe / récurrence / analyse de cas dépendante
 - Cours 9 : Coq's `match`/`fix`, récursion gardée, système F, codage de Church
 - Cours 10 : Une hiérarchie de force logique et d'expressivité calculatoire (PRA, PA, PA₂, ZF)
-- Cours 11 : coinduction
+- Cours 11 : Coinduction
 - Cours 12 : Familles inductives
 - Cours 12 : Synthèse
 
-#### Séances TP / TD
-
-- Séance 1 (20 janvier) : [TD 1](td/td1.pdf) ([correction](td/correction-td1-seance1.pdf))
-- Séance 2 (27 janvier) : Suite du [TD 1](td/td1.pdf)
-- Séance 3 (3 février) : [TP 1](tp/tp1.md)
-- Séance 4 (10 février) : Suite du [TD 1](td/td1.pdf)
-- Séance 5 (17 février) : [TP 2](tp/tp2.md)
-- Séance 6 (24 février) : [TD 2](td/td2.pdf)
-- Séance 7 (10 mars) : [TP 3](tp/tp3.md)
-- Séance 8 (17 mars) : [TP 4](tp/tp4.md)
-- Séance 9 (24 mars) : [TP 5](tp/tp5.md)
-- Séance 10 (31 mars) : [TP 6](tp/tp6.md)
-- Séance 11 (7 avril) : Suite du [TD 2](td/td2.pdf)
-- Séance 12 (14 avril) : [TP 7](tp/tp7.md)
-
 #### Projet
-
-Cf. [projet/README.md](projet/README.md)
 
 #### Examens
 
 - [examen 2021](examens/examen-2021.pdf) avec sa [correction](examens/examen-correction-2021.pdf) et le [code Coq](examens/examen_correction_2021.v) correspondant
 
 - [examen 2022](examens/examen-2022.pdf) avec sa [correction partielle](examens/examen-correction-2022.pdf) et le [code Coq](examens/examen_correction_2022.v) correspondant
+
+- [examen 2023](examens/examen-2023.pdf) avec sa [correction](examens/examen-correction-2023.v)
+
+
