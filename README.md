@@ -4,7 +4,7 @@
 
 12 semaines à partir du 26 janvier 2024 (à partir du 26 janvier aussi pour les TD / TP).
 
-- Cours : vendredi 10h45-12h45, salle 1003 (Hugo Herbelin)
+- Cours : vendredi 10h45-12h45, salle 2001 (Hugo Herbelin)
 - TP/TD : vendredi 16h15-18h15, salle 1003 (Thierry Martinez)
 
 #### Objectifs du cours
