@@ -1,11 +1,13 @@
-# Cours Preuves assistées par ordinateur (hiver 2024)
+# Cours Preuves assistées par ordinateur (hiver 2025)
 
 #### Horaires
 
-12 semaines à partir du 26 janvier 2024 (à partir du 26 janvier aussi pour les TD / TP).
+12 semaines à partir du 24 janvier 2025 (à partir du 24 janvier aussi pour les TD / TP).
 
 - Cours : vendredi 10h45-12h45, salle 2001 (Hugo Herbelin)
-- TP/TD : vendredi 16h15-18h15, salle 1003 (Thierry Martinez)
+- TP/TD : vendredi 15h45-17h45, salle 1003 (Thierry Martinez)
+
+Attention: Inversion des créneaux cours/TDs à partir du 7 février.
 
 #### Objectifs du cours
 
