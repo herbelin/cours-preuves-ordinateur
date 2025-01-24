@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage{fontspec,mathpartir,amsmath}
+\usepackage[a4paper]{geometry}
+\usepackage[francais]{babel}
+\DeclareMathOperator{\efq}{efq}
+\DeclareMathOperator{\case}{case}
+\DeclareMathOperator{\of}{of}
+\DeclareMathOperator{\dest}{dest}
+\DeclareMathOperator{\as}{as}
+\DeclareMathOperator{\cin}{in}
+\begin{document}
+\title{Déduction naturelle}
+\author{Preuves assistées par ordinateur -- TD 1 -- 24 janvier 2025}
+\date{Année scolaire 2024--2025}
+\maketitle
+
+\section*{Exercice 1}
+
+On rappelle les règles d'inférence de la déduction naturelle intuitionniste (sans quantificateur).
+
+\begin{mathpar}
+\inferrule{~}{\Gamma_1, a: A, \Gamma_2 \vdash a : A} \quad \quad
+\inferrule{~}{\Gamma \vdash () : \top} \quad \quad
+\inferrule{\Gamma \vdash p : \bot}{\Gamma \vdash \efq p : A} \\
+\inferrule{\Gamma \vdash p : A \\ \Gamma \vdash q : B}{\Gamma \vdash (p, q) : A \wedge B} \quad \quad
+\inferrule{\Gamma \vdash p : A \wedge B}{\Gamma \vdash \pi_1(p) : A} \quad \quad
+\inferrule{\Gamma \vdash p : A \wedge B}{\Gamma \vdash \pi_2(p) : B} \\
+\inferrule{\Gamma \vdash p : A}{\Gamma \vdash \iota_1(p) : A \vee B} \quad \quad
+\inferrule{\Gamma \vdash p : B}{\Gamma \vdash \iota_2(p) : A \vee B} \quad \quad
+\inferrule{\Gamma \vdash p : A \vee B \\ \Gamma, a : A \vdash q : C \\ \Gamma, b : B \vdash r : C}{\Gamma \vdash \case p \of \, [\iota_1(a) \rightarrow q \vert \iota_2(b) \rightarrow r] : C}\\
+\inferrule{\Gamma, a : A \vdash p : B}{\Gamma \vdash \lambda a . p : A \Rightarrow B} \quad \quad
+\inferrule{\Gamma \vdash p : A \Rightarrow B \\ \Gamma \vdash q : A}{\Gamma \vdash p \, q : B} \\
+\end{mathpar}
+
+\begin{enumerate}
+\item Montrer que l'implication est réflexive (\(A \Rightarrow A\))
+  et transitive (\((A \Rightarrow B) \wedge (B \Rightarrow C) \Rightarrow (A \Rightarrow C)\)).
+  Commenter les programmes obtenus.
+\item Montrer l'isomorphisme de Curry
+  \[(A \wedge B \Rightarrow C) \Leftrightarrow (A \Rightarrow B \Rightarrow C)\]
+  (on note \(A \Leftrightarrow B\) pour \((A \Rightarrow B) \wedge (B \Rightarrow A)\)).
+
+  Quelle conséquence peut-on en déduire en programmation ?
+\item Montrer la distributivité de \(\wedge\) et \(\vee\) avec l'implication.
+  \[(A \Rightarrow (B \wedge C)) \Leftrightarrow ((A \Rightarrow B) \wedge (A \Rightarrow C))\]
+  \[((A \vee B) \Rightarrow C) \Leftrightarrow ((A \Rightarrow C) \wedge (B \Rightarrow C))\]
+  Quelles conséquences peut-on en déduire en programmation ?
+\item Montrer que \(\top\) est neutre pour \(\wedge\) et absorbant pour \(\vee\).
+
+  Montrer que \(\bot\) est absorbant pour \(\wedge\) et neutre pour \(\vee\).
+\end{enumerate}
+
+\section*{Exercice 2}
+
+On rappelle les règles d'inférence de la déduction naturelle intuitionniste pour les quantificateurs.
+
+\begin{mathpar}
+\inferrule{\Gamma \vdash p : A \\ \text{\(x\) n'est pas libre dans \(\Gamma\)}}{\Gamma \vdash \lambda x . p : \forall x . A} \quad \quad
+\inferrule{\Gamma \vdash p : \forall x \, A}{\Gamma \vdash p \, t : A[t/x]} \\
+\inferrule{\Gamma \vdash p : A[t/x]}{\Gamma \vdash (t, p) : \exists x \, A} \quad \quad
+\inferrule{\Gamma \vdash p : \exists x \, A \\ \Gamma, a : A \vdash q : C \\ \text{\(x\) n'est pas libre dans \(\Gamma\)}}{\Gamma \vdash \dest p \as \, (x, a) \cin q : C}
+\end{mathpar}
+\begin{enumerate}
+\item Montrer la distributivité de \(\wedge\) avec la quantification universelle
+et la distributivité de \(\vee\) avec la quantification existentielle.
+\[
+\forall x (A \wedge B) \Leftrightarrow (\forall x \, A) \wedge (\forall x \, B)
+\]
+\[
+\exists x (A \vee B) \Leftrightarrow (\exists x \, A) \vee (\exists x \, B)
+\]
+\item Qu'en est-il de la distributivité de \(\wedge\) avec la quantification existentielle
+et de la distributivité de \(\vee\) avec la quantification universelle ?
+\item Montrer les équivalences \(\forall x \, \forall y \, A \Rightarrow \forall y \, \forall x \, A\)
+et \(\exists x \, \exists y \, A \Rightarrow \exists y \, \exists x \, A\).
+\item Montrer l'implication \(\exists y \, \forall x \, A \Rightarrow \forall x \, \exists y \, A\).
+  Justifier informellement qu'on ne peut pas montrer l'implication réciproque.
+\end{enumerate}
+
+\section*{Exercice 3}
+
+On note \(\neg A\) l'implication \(A \Rightarrow \bot\).
+
+\begin{enumerate}
+\item Montrer que le tiers exclu (\(A \vee \neg A\)) n'est pas prouvable en logique intuitionniste.
+\item Montrer que \(A \Rightarrow \neg \neg A\) est prouvable en logique intuitionniste.
+
+  Montrer que la réciproque est équivalente au tiers exclu.
+\item Montrer que \(\neg (A \vee B) \Leftrightarrow (\neg A) \wedge (\neg B)\)
+et montrer que \((\neg A) \vee (\neg B) \Rightarrow \neg (A \wedge B)\).
+\item Montrer que \(\neg (\exists x \, A) \Leftrightarrow \forall x (\neg A)\)
+et montrer que \(\exists x (\neg A) \Rightarrow \neg (\forall x \, A)\).
+\item Montrer que la loi de Pierce ci-dessous est équivalente au tiers exclu.
+  \[((A \Rightarrow B) \Rightarrow A) \Rightarrow A\]
+\item On suppose que \(\Gamma\) contient \(\text{call/cc} : ((A \Rightarrow B) \Rightarrow A) \Rightarrow A\).
+
+Montrer que, dans le contexte \(\Gamma\), on a \(\neg (A \wedge B) \Rightarrow (\neg A) \vee (\neg B)\)
+et \(\neg (\forall x \, A) \Rightarrow \exists x (\neg A)\).
+
+  Quelles conséquences peut-on en déduire en programmation ?
+\end{enumerate}
+
+\end{document}
