@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{fontspec,mathpartir,amsmath,minted}
+\usepackage[a4paper]{geometry}
+\usepackage[francais]{babel}
+\DeclareMathOperator{\efq}{efq}
+\DeclareMathOperator{\case}{case}
+\DeclareMathOperator{\of}{of}
+\DeclareMathOperator{\dest}{dest}
+\DeclareMathOperator{\as}{as}
+\DeclareMathOperator{\cin}{in}
+\begin{document}
+\title{Logique constructive et types dépendants}
+\author{Preuves assistées par ordinateur -- TP 1 -- 31 janvier 2025}
+\date{Année scolaire 2024--2025}
+\maketitle
+
+\section*{Exercice 1 : Un peu de théorie constructive des ensembles}
+
+On se donne deux ensembles \mintinline{coq}{A} et \mintinline{coq}{B},
+qu'on définit une fois pour toutes les définitions qui vont suivre.
+
+\begin{minted}{coq}
+Parameters A B : Set.
+\end{minted}
+
+\begin{enumerate}
+\item Définir une propriété \mintinline{coq}{injective: (A -> B) -> Prop} sur
+les fonctions \mintinline{coq}{A -> B} telle qu'on ait
+\mintinline{coq}{injective f} lorsque \mintinline{coq}{f} est injective
+(\emph{c.-à.-d.}, pour tous \(x\) et \(y\), si \(f x = f y\), alors \(x = y\)).
+\item Montrer que \mintinline{coq}{f} est injective si et seulement si
+\mintinline{coq}{f} est simplifiable à gauche
+(\emph{c.-à.-d.}, pour toutes fonctions \(g\) et \(g'\), si \(f \circ g = f \circ g'\),
+alors \(g = g'\)).
+\item Définir une propriété \mintinline{coq}{surjective: (A -> B) -> Prop} sur
+les fonctions \mintinline{coq}{A -> B} telle qu'on ait
+\mintinline{coq}{surjective f} lorsque \mintinline{coq}{f} est surjective
+(\emph{c.-à.-d.}, pour tout \(y\), il existe \(x\), tel que \(f x = y\)).
+\item En supposant le tiers exclu, montrer que \mintinline{coq}{f} est surjective si et seulement si
+\mintinline{coq}{f} est simplifiable à droite
+(\emph{c.-à.-d.}, pour toutes fonctions \(g\) et \(g'\), si \(g \circ f = g' \circ f\),
+alors \(g = g'\)).
+\item Peut-on se passer du tiers exclu ?
+\end{enumerate}
+
+\section*{Exercice 2 : Lemme d'affaiblissement}
+
+On se donne un ensemble de variables.
+
+\begin{minted}{coq}
+Parameter var : Set.
+\end{minted}
+
+\begin{enumerate}
+\item Définir un inductif \mintinline{coq}{lambda} pour représenter les termes du \(\lambda\)-calcul (on demande trois constructeurs, pour les variables, les abstractions et les applications).
+\item Définir un inductif \mintinline{coq}{type} pour représenter les types (on demande seulement deux constructeurs : les types atomiques, qui seront nommés par des variables, et l'implication).
+\item On représentera un contexte par une valeur de type \mintinline{coq}{list (var * type)}. Définir un inductif \mintinline{coq}{derivation} pour représenter les dérivations de typage en logique naturelle: cet inductif aura trois indices, pour le contexte, le \(\lambda\)-terme et son type. On aura un constructeur pour chacune des trois règles suivantes: la règle axiome et les règles d'introduction et d'élimination de l'implication.
+\item Montrer le lemme d'affaiblissement sur ce fragment : pour tous \(\Gamma\), \(x\) et \(t\), si \(\Gamma \vdash x : t\), alors pour tout \(\Gamma'\), si \(\Gamma \subseteq \Gamma'\), alors \(\Gamma' \vdash x : t\).
+\item On pourra itérativement élargir le fragment aux autres règles de la logique naturelle.
+\end{enumerate}
+
+\section*{Exercice 3 : Diagonale d'une matrice carrée}
+
+On se donne le type des listes de longueur fixée.
+\begin{minted}{coq}
+Inductive vect {A}: nat -> Type := 
+| nil: vect O
+| cons: forall {n}, A -> vect n -> vect (S n).
+\end{minted}
+
+Définir une fonction \mintinline{coq}{diag: forall A n, @vect (@vect A n) n -> @vect A n} qui extrait la diagonale d'une matrice carrée.
+
+\end{document}
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-command-extra-options: "-shell-escape"
+%%% End:

@@ -1,0 +1,849 @@
+\documentclass{beamer}
+\usepackage{fontspec,minted,amsthm,mathpartir}
+\begin{document}
+\begin{frame}
+  \title{An Introduction to Coq/Rocq}
+  \author{Thierry Martinez}
+  \date{31 January 2025}
+  \maketitle
+\end{frame}
+\begin{frame}
+  \frametitle{What is Coq/Rocq?}
+
+  \begin{itemize}
+  \item A Proof Assistant (to perform machine-checked proofs, relying on the Curry-Howard correspondance)
+    \vfill
+  \item A Programming Language
+    \vfill
+  \item An Implementation of the Calculus of Inductive Constructions CIC
+    (with extensions: perhaps pCuIC, the Predicative Calculus of Cumulative Inductive Constructions, is the closest formalization)
+    \vfill
+  \item A Compiler and a Type-Checker (both at the same time, since types can compute)
+  \end{itemize}
+
+  \vfill
+
+  Coq development started in 1984.
+
+  \vfill
+
+  Coq will soon be renamed into
+  \emph{The Rocq Prover} (testimony of the former Inria research
+  center in Rocquencourt where Coq is born).
+\end{frame}
+
+\begin{frame}
+  \frametitle{A Proof Assistant}
+
+  As many programming languages, Coq provides a command (`coqc`) to compile (and type-check) programs.
+
+  \vfill
+
+  But programs are nearly impossible to write without interacting with
+  Coq, that is what we call a Proof Assistant.
+  The interactive loop is provided by the command `coqtop`.
+
+  \vfill
+
+  But `coqtop` itself remains very cumbersome to use directly.  We
+  generally use an interface on top of it: either CoqIDE,
+  ProofGeneral, VSCoq.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{A Programming Language}
+
+  The Coq language has several layers:
+  \begin{itemize}
+  \item The Vernacular language: the top-level commands that compose the programs, to introduce 
+    \mintinline{coq}{Definition},
+    \mintinline{coq}{Theorem},
+    \mintinline{coq}{Proof},
+    \mintinline{coq}{Qed},
+    \mintinline{coq}{Print},
+    \mintinline{coq}{Check},
+    \mintinline{coq}{Import}, etc.
+    \vfill
+  \item The Gallina specification language: the CIC calculus itself
+    \vfill
+  \item The tactics language (there are some variants: Ltac, Ltac2, SSReflect, elpi, ...)
+  \end{itemize}
+
+  \vfill
+
+  These languages cohabit in the same program script: vernacular commands introduce definitions
+  and theorems written in Gallina and proofs written with tactics.
+
+  \vfill
+
+  These languages interleave: we can use Gallina in tactics (\mintinline{coq}{exact}, \mintinline{coq}{refine}), and we can use tactics to write Gallina terms (\mintinline{coq}{(ltac:...)}).
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{An Implementation of the Calculus of Inductive Constructions CIC (or pCuIC?)}
+
+  An extension of the \(\lambda\)-calculus:
+  \begin{description}
+  \item[variable] \mintinline{coq}{x}
+  \item[abstraction] \mintinline{coq}{fun x => e} (traditionnally written as \(\lambda x.e\), or more commonly in other branchs of mathematics \(x \mapsto e\))
+  \item[application] \mintinline{coq}{f e} (or, equivalently, \mintinline{coq}{f(e)}, but the parentheses are superfluous; in mathematics, we often write \(\sin \alpha)\)!)
+  \end{description}
+  with the rule called \(\beta\)-reduction: \((\lambda x.e_1) e_2 \rightarrow_\beta e_1[e_2/x]\),
+  where \(e_1[e_2/x]\) means \(e_1\) where every occurrence of \(x\) has been replaced by \(e_2\).
+
+  \vfill
+  \(\eta\)-reduction: \(\lambda x. f ~ x \rightarrow_\eta f\), also useful backwards (\(\eta\)-expansion).
+
+  \vfill
+
+  Expressions can be computed:
+  \begin{minted}{coq}
+Coq < Eval cbv in (fun x => x + 1) 2.
+     = 3
+     : nat
+  \end{minted}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Typed \(\lambda\)-calculus}
+
+  Every variable and every expression have types (but there is a partial type inference, types can be ommited in simple cases -- full type inference for CIC is indecidable).
+
+  \vfill
+
+  \begin{theorem}[Strong normalization]
+    Every computation terminates, \emph{i.e.} there is no infinite chains of  \(\beta\)-reduction.
+  \end{theorem}
+
+  \vfill
+
+  For instance, \(\lambda\)-terms such as \(\Delta \Delta\) is rejected by Coq (where \(\Delta\) is the \(\lambda\)-term \(\lambda x . x x\): in pure \(\lambda\)-calculus, we have the chain
+\((\lambda x . x x)(\lambda x . x x) \rightarrow_\beta (\lambda x . x x)(\lambda x . x x) \rightarrow_\beta ...\)).
+
+  To perform loops, we have fixpoints (\emph{aka} guarded recursion):
+
+  \begin{minted}{coq}
+Fixpoint fact (n: nat) {struct n}: nat :=
+  match n with
+  | 0 => 1
+  | S m => n * fact m
+  end.
+  \end{minted}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Types can compute}
+
+\begin{minted}{coq}
+Fixpoint nary (n: nat): Type :=
+  match n with
+  | 0 => nat
+  | S m => nat -> nary m
+  end.
+
+Fixpoint bigsum (n: nat) (acc: nat): nary n :=
+  match n with
+  | 0 => acc
+  | S m => fun x => bigsum m (acc + x)
+  end.
+
+Eval cbv in bigsum 4 0 1 2 3 4.
+\end{minted}
+
+\vfill
+
+Note that the branches of this \mintinline{coq}{match} are heterogeneous:
+\begin{itemize}
+\item the branch \mintinline{coq}{0} has type \mintinline{coq}{nary 0},
+\item the branch \mintinline{coq}{S m} has type \mintinline{coq}{nary (S m)}.
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Inductive types}
+
+Types can be defined inductively. For instance, the type \mintinline{coq}{nat}
+is defined as the smallest type that contains \mintinline{coq}{O} and is closed
+by applications of \mintinline{coq}{S} (Peano numbers).
+\vfill
+\begin{minted}{coq}
+Inductive nat :=
+| O: nat
+| S: nat -> nat.
+\end{minted}
+\vfill
+\mintinline{coq}{match} and \mintinline{coq}{fix} allow us to define the recurrence
+principle, and \mintinline{coq}{Inductive} defines it for us automatically.
+\footnotesize
+\begin{minted}{coq}
+Coq < Print nat_ind.
+nat_ind =
+fun (P: nat -> Prop) (f: P O) (f0: forall n: nat, P n -> P (S n)) =>
+fix F (n: nat): P n :=
+  match n as n0 return (P n0) with
+  | O => f
+  | S n0 => f0 n0 (F n0)
+  end
+    : forall P: nat -> Prop,
+       P O -> (forall n: nat, P n -> P (S n)) -> forall n: nat, P n
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Logical Conjunction as Inductive Type}
+
+\begin{minted}{coq}
+Coq < Print and.
+Inductive and (A B : Prop) : Prop :=
+    conj : A -> B -> A /\ B.
+
+Lemma and_comm': forall A B, A /\ B -> B /\ A.
+Proof.
+  exact (fun A B a_b =>
+    match a_b with
+    | conj a b => conj b a
+    end
+  ).
+Qed.
+\end{minted}
+
+\vfill
+
+\mintinline{coq}{A /\ B} is an infix notation for \mintinline{coq}{and A B}.
+
+\vfill
+
+Note: we can define our own infix notations with \mintinline{coq}{Infix "/\" := and.}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Logical Disjunction as Inductive Type}
+
+\begin{minted}{coq}
+Coq < Print or.
+Inductive or (A B : Prop) : Prop :=
+    or_introl : A -> A \/ B | or_intror : B -> A \/ B.
+
+Lemma or_comm': forall A B, A \/ B -> B \/ A.
+Proof.
+  exact (fun A B a_b =>
+    match a_b with
+    | or_introl a => or_intror a
+    | or_intror b => or_introl b
+    end
+  ).
+Qed.
+\end{minted}
+
+\vfill
+
+\mintinline{coq}{\/} is an infix notation for \mintinline{coq}{or}.
+
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Proofs as Programs}
+
+Three ways of defining the same object:
+\begin{minted}{coq}
+Definition id: forall A: Prop, A -> A :=
+  fun A => fun (x : A) => x.
+
+Lemma id': forall A, A -> A.
+Proof.
+  exact (fun A => fun (x : A) => x).
+Qed.
+
+Lemma id'': forall A, A -> A.
+Proof.
+  intro A. intro x. apply x.
+Qed.
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Tactics construct proof trees}
+
+\begin{minted}{coq}
+Lemma id'': forall A, A -> A.
+Proof.
+  intro A. intro x. apply x.
+Qed.
+\end{minted}
+
+\vfill
+
+\begin{mathpar}
+\inferrule{
+  \inferrule{
+    \inferrule{~}{
+      \mintinline{coq}{A: Prop}, \mintinline{coq}{x: A} \vdash \mintinline{coq}{x} : \mintinline{coq}{A}
+    } (\mintinline{coq}{apply x})
+  }{
+    \mintinline{coq}{A: Prop} \vdash \mintinline{coq}{fun x => x} : \mintinline{coq}{A -> A}
+  } (\mintinline{coq}{intro x})
+}{
+  \vdash \mintinline{coq}{fun A => fun x => x} : \mintinline{coq}{forall A: Prop, A -> A}
+} (\mintinline{coq}{intro A})
+\end{mathpar}
+
+\vfill
+
+\[
+\text{context} \vdash \text{proof term to construct} : \text{goal}
+\]
+
+\vfill
+
+As we do by hand, we usually know the context and the goal of the bottom of the proof tree
+and we construct the proof tree from bottom to top by applying tactics (\emph{aka} logic rules),
+and the proof term is constructed gradually, from the outside to the inside (this is
+a term with holes).
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Basic tactics}
+
+\[
+\text{context} \vdash \text{proof term to construct} : \text{goal}
+\]
+
+\vfill
+
+We already saw \mintinline{coq}{exact e} that type-checks \mintinline{coq}{e} against the goal.
+\begin{minted}{coq}
+Lemma id': forall A, A -> A.
+Proof.
+  exact (fun A => fun (x : A) => x).
+Qed.
+\end{minted}
+
+\vfill
+
+More generally, \mintinline{coq}{refine e} takes a term \mintinline{coq}{e} with holes (\mintinline{coq}{_}), and the types of the holes become subgoals to prove.
+
+\begin{minted}{coq}
+Lemma id''': forall A, A -> A.
+Proof.
+  refine (fun A => _).
+  refine (fun x => _).
+  refine x.
+Qed.
+\end{minted}
+
+\mintinline{coq}{intro x} is a shorthand for \mintinline{coq}{refine (fun x => _)}.
+
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Tactics with multiple subgoals}
+
+{
+\footnotesize
+\begin{minted}{coq}
+Lemma and_comm': forall A B, A /\ B -> B /\ A.
+Proof.
+  intros A B a_b. destruct a_b as [a b]. split.
+  - apply b.
+  - apply a.
+Qed.
+\end{minted}
+}
+{\footnotesize
+Bullets are optional, but enable Coq to check layout consistency.
+}
+{
+\footnotesize
+\begin{mathpar}
+\inferrule{
+  \inferrule{
+    \inferrule{
+      \inferrule{~}{
+        \mintinline{coq}{a_b: A /\ B}, \mintinline{coq}{a: A}, \mintinline{coq}{b: B} \vdash \mintinline{coq}{b} : \mintinline{coq}{B}
+      } \\
+      \inferrule{~}{
+        \mintinline{coq}{a_b: A /\ B}, \mintinline{coq}{a: A}, \mintinline{coq}{b: B} \vdash \mintinline{coq}{a} : \mintinline{coq}{A}
+      }
+    }{
+      \mintinline{coq}{a_b: A /\ B}, \mintinline{coq}{a: A}, \mintinline{coq}{b: B} \vdash \mintinline{coq}{conj _ _} : \mintinline{coq}{B /\ A}
+    }
+  }{
+    \mintinline{coq}{a_b: A /\ B} \vdash \mintinline{coq}{match a_b with conj a b => _ end} : \mintinline{coq}{B /\ A}
+  }
+}{
+  \vdash \mintinline{coq}{fun A B a_b => _} : \mintinline{coq}{forall A B, A /\ B -> B /\ A}
+}
+\end{mathpar}
+}
+
+{
+\footnotesize
+\begin{minted}{coq}
+Lemma and_comm'': forall A B, A /\ B -> B /\ A.
+Proof.
+  refine (fun A B a_b => _).
+  refine (match a_b with conj a b => _ end).
+  refine (conj _ _). - refine b. - refine a.
+Qed.
+\end{minted}
+}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Tactics for and/or}
+
+We have already seen that:
+\begin{itemize}
+\item \mintinline{coq}{destruct} is a shorthand for \mintinline{coq}{refine (match ...)},
+\item \mintinline{coq}{split} is a shorthand for \mintinline{coq}{refine (conj _ _)}.
+\end{itemize}
+
+\vfill
+
+We also have:
+\begin{itemize}
+\item \mintinline{coq}{left}, a shorthand for \mintinline{coq}{refine (or_introl _)},
+\item \mintinline{coq}{right} is a shorthand for \mintinline{coq}{refine (or_intror _)}.
+\end{itemize}
+
+\vfill
+
+{
+\footnotesize
+\begin{minted}{coq}
+Lemma or_comm': forall A B, A \/ B -> B \/ A.
+Proof.
+  intros A B a_b. destruct a_b as [a | b].
+  - right. apply a.
+  - left. apply b.
+Qed.
+Lemma or_comm'': forall A B, A \/ B -> B \/ A.
+Proof.
+  refine (fun A B a_b => _).
+  refine (match a_b with or_introl a => _ | or_intror b => _ end).
+  - refine (or_intror _). refine a.
+  - refine (or_introl _). refine b.
+Qed.
+\end{minted}
+}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Tactics for inductive reasoning}
+
+{
+\footnotesize
+\begin{minted}{coq}
+Lemma nat_ind':
+  forall P, P O -> (forall n, P n -> P (S n)) -> forall n, P n.
+Proof.
+  intros P P_O H n.
+  induction n as [|n IHn].
+  - apply P_O.
+  - apply H. apply IHn.
+Qed.
+
+Lemma nat_ind'':
+  forall P, P O -> (forall n, P n -> P (S n)) -> forall n, P n.
+Proof.
+  refine (fun P P_O H n => _).
+  refine (nat_rect _ _ _ n).
+  - refine P_O.
+  - clear n. refine (fun n IHn => _). refine (H _ _). refine IHn.
+Qed.
+\end{minted}
+
+\vfill
+
+\mintinline{coq}{clear n} forgets the hypothesis \mintinline{coq}{n} in the context.
+
+\mintinline{coq}{nat_rect} is a generalization of \mintinline{coq}{nat_ind}
+for any sort of types.
+}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{A Type Hierarchy}
+\begin{minted}{coq}
+Coq < Check O.
+O
+     : nat
+
+Coq < Check nat.
+nat
+     : Set
+
+Coq < Check Set.
+Set
+     : Type
+
+Coq < Check Type.     
+Type
+     : Type
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Implicit Universes}
+\begin{minted}{coq}
+Coq < Set Printing Universes.
+
+Coq < Check Set.
+Set
+     : Type@{Set+1}
+
+Coq < Check Type.
+Type@{Top.5}
+     : Type@{Top.5+1}
+(* {Top.5} |=  *)
+
+Coq < Check (forall x, x).
+forall x : Type@{Top.7}, x
+     : Type@{Top.7+1}
+(* {Top.7} |=  *)
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{\mintinline{coq}{Prop} Impredicativity}
+\begin{minted}{coq}
+Coq < Check (forall (P: Prop), P -> P).
+forall P : Prop, P -> P
+     : Prop
+
+Coq < Check (forall (P: Type), P -> P).
+forall P : Type@{Top.13}, P -> P
+     : Type@{Top.13+1}
+(* {Top.13} |=  *)
+
+Coq < Check (forall (P: Set), P -> P).
+forall P : Set, P -> P
+     : Type@{Set+1}
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inductive Types with Parameters}
+\small
+\begin{minted}{coq}
+Coq < Print list.
+Inductive list (A : Type) : Type :=
+    nil : list A | cons : A -> list A -> list A.
+
+Coq < Check (cons O nil).
+(0 :: nil)%list
+     : list nat
+
+Coq < Check (cons False (cons True nil)).
+(False :: True :: nil)%list
+     : list Prop
+
+Require Import List.
+Import ListNotations.
+
+Fixpoint length {A} (l: list A): nat :=
+  match l with
+  | [] => 0
+  | _hd :: tl => 1 + length tl
+  end.
+\end{minted}
+\mintinline{coq}/{A}/ declares \mintinline{coq}{A} as an implicit argument.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Inductive Types with Indices}
+\begin{minted}{coq}
+Inductive vect {A}: nat -> Type := 
+| nil: vect O
+| cons: forall {n}, A -> vect n -> vect (S n).
+
+Fixpoint map {A B n} (f: A -> B) (v: @vect A n):
+  @vect B n :=
+  match v with
+  | nil => nil
+  | cons hd tl => cons (f hd) (map f tl)
+  end.
+\end{minted}
+
+\vfill
+
+\mintinline{coq}{@vect} turns implicit arguments explicit again.
+
+This definition of \mintinline{coq}{map} ensures that the length is preserved!
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Typing rule for \mintinline{coq}{match}}
+
+\(\mintinline{coq}{Inductive}~I~\mintinline{coq}{:}~\vec i~\mintinline{coq}{->}~s~\mintinline{coq}{:=}\)\\
+\(\mintinline{coq}{|}~C_i~\mintinline{coq}{:}~\vec t_i~\mintinline{coq}{->}~I~\vec p_i\)
+
+\begin{mathpar}
+\inferrule{
+\Gamma \vdash x : I ~ \vec v\\
+\Gamma, \vec u : \vec i, y : I ~ \vec u \vdash T : s'\\
+\Gamma, \vec a_i : \vec t_i \vdash e_i : T[(C_i \vec a_i)\vec p_i/y\vec u]\\
+\text{\(I ~ \vec v : s\) and \(s\) can be eliminated into \(s'\)}
+}
+{
+\Gamma \vdash \mintinline{coq}{match}~x~\mintinline{coq}{as}~y~\mintinline{coq}{in}~I~\vec u~\mintinline{coq}{return}~T~\mintinline{coq}{with}~C_i~\vec a_i~\mintinline{coq}{=>}~e_i~\mintinline{coq}{end} : T[x\vec v/y\vec u]
+}
+\end{mathpar}
+
+\footnotesize
+\begin{minted}{coq}
+Inductive vect {A}: nat -> Type := 
+| nil: vect O
+| cons: forall {n}, A -> vect n -> vect (S n).
+
+Fixpoint map {A B n} (f: A -> B) (v: @vect A n):
+  @vect B n :=
+  match v in vect A m return @vect A m with
+  | nil => nil (* : @vect A 0 *)
+  | @cons m hd tl => cons (f hd) (map f tl) (* : @vect A (S m) *)
+  end.
+\end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Elimination condition: \mintinline{coq}{Prop} must be eliminated into \mintinline{coq}{Prop}}
+
+\begin{minted}{coq}
+Coq < Print or.
+Inductive or (A B : Prop) : Prop :=
+    or_introl : A -> A \/ B | or_intror : B -> A \/ B.
+
+Coq < Print sum.
+Inductive sum (A B : Type) : Type :=
+    inl : A -> A + B | inr : B -> A + B.
+\end{minted}
+
+There is an injection from \mintinline{coq}{A + B} to \mintinline{coq}{A \/ B},
+but we cannot define the reverse injection, since a pattern-matching over a term
+of type \mintinline{coq}{or} can only return a \mintinline{coq}{Prop}.
+
+\begin{minted}{coq}
+Coq < Print sig.
+Inductive sig (A : Type) (P : A -> Prop) : Type :=
+    exist : forall x : A, P x -> {x : A | P x}.
+\end{minted}
+
+There is an injection from \mintinline{coq}/{x : A | P x}/ to
+\mintinline{coq}{exists x : A, P x}, but we cannot define the reverse injection.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{\mintinline{coq}{bigsum} again}
+
+\begin{minted}{coq}
+Fixpoint nary (n: nat): Type :=
+  match n with
+  | 0 => nat
+  | S m => nat -> nary m
+  end.
+
+Fixpoint bigsum (n: nat) (acc: nat): nary n :=
+  match n as n0 return nary n0 with
+  | 0 => acc (* : nary 0 *)
+  | S m => fun x => bigsum m (acc + x) (* : nary (S m) *)
+  end.
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Coq Equality is an Inductive Type}
+
+\begin{minted}{coq}
+Coq < Print eq.
+Inductive eq (A : Type) (x : A) : A -> Prop :=
+| eq_refl : x = x.
+\end{minted}
+
+\vfill
+
+\mintinline{coq}{x = y} is an infix notation for \mintinline{coq}{eq x y}.
+
+\vfill
+
+\begin{mathpar}
+\inferrule{
+\Gamma \vdash e : x~\mintinline{coq}{=}~y\\
+\Gamma, y' : A \vdash f~y' : s'\\
+\Gamma \vdash e : f~x\\
+}
+{
+\Gamma \vdash \mintinline{coq}{match}~e~\mintinline{coq}{in _ =}~y'~\mintinline{coq}{return}~f~y'~\mintinline{coq}{with eq_refl =>}~e~\mintinline{coq}{end} : f~y
+}
+\end{mathpar}
+
+\vfill
+
+This typing rule is a type cast: we can convert terms of type \mintinline{coq}{x} into
+terms of type \mintinline{coq}{y}.
+
+\vfill
+
+\begin{minted}{coq}
+Definition type_cast {A B} (e: A = B) (v: A): B :=
+  match e in _ = t return t with
+  | eq_refl => v
+  end.
+\end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Coq Equality is Reflexive}
+
+\begin{minted}{coq}
+Lemma eq_refl': forall A (x: A), x = x.
+Proof.
+  intros. reflexivity.
+Qed.
+
+Lemma eq_refl'': forall A (x: A), x = x.
+Proof.
+  refine (fun A x => _). refine eq_refl.
+Qed.
+\end{minted}
+\vfill
+
+Note: these are \(\eta\)-expansions of \mintinline{coq}{eq_refl}.
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Coq Equality is Symmetric}
+
+\begin{minted}{coq}
+Lemma eq_sym': forall {A} {x y: A}, x = y -> y = x.
+Proof.
+  intros A x y H. symmetry. apply H.
+Qed.
+
+Lemma eq_sym'': forall A (x y: A), x = y -> y = x.
+Proof.
+  refine (fun A x y H => _).
+  refine (
+    match _ in _ = y' return y' = x with
+    | eq_refl => eq_refl
+    end
+  ).
+  refine H.
+Qed.
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Coq Equality is Transitive}
+
+\begin{minted}{coq}
+Lemma eq_trans':
+  forall A (x y z: A), x = y -> y = z -> x = z.
+Proof.
+  intros A x y z x_y y_z. transitivity y.
+  - apply x_y.
+  - apply y_z.
+Qed.
+Lemma eq_trans'':
+  forall A (x y z: A), x = y -> y = z -> x = z.
+Proof.
+  refine (fun A x y z x_y y_z => _).
+  refine (
+    match eq_sym (y := y) _ in _ = y' return y' = z with
+    | eq_refl => _
+    end
+  ). - refine x_y. - refine y_z.
+Qed.
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Coq Equality is equivalent to Leibniz Equality}
+
+  \begin{definition}[Leibniz Equality]
+    Two terms are equal if they satisfy the same properties (for all properties).
+  \end{definition}
+\small
+\begin{minted}{coq}
+Lemma eq_leibniz:
+  forall A (x y: A), x = y <-> forall P: A -> Prop, P y -> P x.
+Proof.
+  intros A x y. split; intro H.
+  - intro P. intro HP. rewrite H. apply HP.
+  - apply H. reflexivity.
+Qed. 
+Lemma eq_leibniz':
+  forall A (x y: A), x = y <-> forall P: A -> Prop, P y -> P x.
+Proof.
+  refine (fun A x y => _).
+  refine (conj _ _); refine (fun H => _).
+  - refine (fun P => _). refine (fun HP => _).
+    refine (match eq_sym H with eq_refl => _ end).
+    refine HP.
+  - refine (H (fun _ => _) _). refine eq_refl. Qed.
+\end{minted}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Tactic composition}
+
+  \(t ~ \mintinline{coq}{;} ~ t'\)
+  executes \(t\) and then executes \(t'\) on each subgoal
+  generated by \(t\).
+
+  \vfill
+
+  \(t ~ \mintinline{coq}{; [}t_1 \mintinline{coq}{|} \cdots \mintinline{coq}{|} t_n\mintinline{coq}{]}\)
+  executes \(t\) and then executes \(t_i\) on the \(i\)th subgoal
+  generated by \(t\).
+
+  \vfill
+
+  \(t ~ \mintinline{coq}{+} ~ t'\)
+  executes \(t\) and, if \(t\) fails, executes \(t'\).
+
+  \(\mintinline{coq}{try } ~ t\) is a shorthand for \(t ~ \mintinline{coq}{+ idtac}\).
+
+  \vfill
+
+  \(n \mintinline{coq}/:{/ ... \mintinline{coq}/}/\)
+  focuses on the \(n\)th subgoal (interactively).
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Pattern-matching with absurd cases}
+
+\begin{minted}{coq}  
+Inductive vect {A}: nat -> Type := 
+| nil: vect O
+| cons: forall {n}, A -> vect n -> vect (S n).
+Definition tail {A n} (v: @vect A (S n)): @vect A n :=
+  match v with
+  | cons _ tl => tl
+  end.
+Definition tail' {A n} (v: @vect A (S n)): @vect A n :=
+  match v in @vect _ m return
+    match m with
+    | O => unit
+    | S n' => @vect A n'
+    end
+  with
+  | nil => tt
+  | cons _ tl => tl
+  end.
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Pattern-matching with convoy pattern}
+
+\mintinline{coq}{match} with non-linear dependencies between types (\mintinline{coq}{n} occurs several times in the context).
+\vfill
+convoy pattern : \(\eta\)-expansion around \mintinline{coq}{match}.
+\vfill
+\begin{minted}{coq}
+Fixpoint map2 {A B C n} (f: A -> B -> C)
+  (u: @vect A n) (v: @vect B n): @vect C n :=
+  match u in @vect _ n' return @vect B n' -> _ with
+  | nil => fun v =>
+    match v with
+    | nil => nil
+    end
+  | cons uh ut => fun v =>
+    match v with
+    | cons vh vt => fun ut =>
+      cons (f uh vh) (map2 f ut vt)
+    end ut
+  end v.
+\end{minted}
+\end{frame}
+\end{document}
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-command-extra-options: "-shell-escape"
+%%% End:
