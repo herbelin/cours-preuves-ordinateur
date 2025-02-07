@@ -25,7 +25,7 @@ preuve de correction effective des programmes.
 
 #### Plan prospectif
 
-- Cours 1 : [Contexte historique](contexte-historique.pdf), règles d'inférence de la déduction naturelle ([section 2.1 du poly PP](proofs-and-programs.pdf))
+- Cours 1 : [Contexte historique](contexte-historique.pdf), correspondance preuve-programme pour la déduction naturelle propositionnelle
 - Cours 2 : Règles d'inférence de la déduction naturelle (suite), lambda-calcul simplement typé, β-réduction, correspondance preuves-programmes ([section 3.1 du poly PP](proofs-and-programs.pdf)), quantificateurs
 - Cours 3 : Lambda-calcul simplement typé, correspondance preuves-programmes, élimination des coupures, propriété de la sous-formule ([Théorème 5 du poly PP](proofs-and-programs.pdf)), formes normales, normalisation
 - Cours 4 : Règles η, inversibilité de l'introduction des connecteurs négatifs et de l'élimination des connecteurs positifs, admissibilité de la contractione et de l'affaiblissement
