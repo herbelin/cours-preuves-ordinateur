@@ -40,7 +40,39 @@ les fonctions \mintinline{coq}{A -> B} telle qu'on ait
 \mintinline{coq}{f} est simplifiable à droite
 (\emph{c.-à.-d.}, pour toutes fonctions \(g\) et \(g'\), si \(g \circ f = g' \circ f\),
 alors \(g = g'\)).
+
+\textbf{Erratum :} On supposera aussi l'axiome d'extentionnalité propositionnelle :
+
+\mintinline{coq}{forall p q : Prop, (p <-> q) -> p = q}
+
+On peut noter que la conjonction de l'axiome d'extentionnalité propositionnelle et du tiers exclu est équivalente à l'axiome de dégénérescence propositionnelle (ou complétude propositionnelle) : \mintinline{coq}{forall p : Prop, p = True \/ p = False}. Ces axiomes sont définis dans le module \texttt{ClassicalFacts} de la bibliothèque standard.
+
+\textbf{Indications :} Le tiers exclu permet de supposer par l'absurde 
+
+\mintinline{coq}{~ (exists x : A, f x = y)}
+
+On pourra poser les définitions suivantes :
+\begin{minted}{coq}
+set (g := fun _: B => False).
+set (g' := fun y' => y = y').
+\end{minted}
+
+On peut alors montrer facilement que \mintinline{coq}{g y <> g' y}, et la contradiction vient du fait qu'on peut aussi montrer \mintinline{coq}{g y = g' y} avec l'extentionnalité propositionnelle.
+
 \item Peut-on se passer du tiers exclu ?
+
+\textbf{Indications :} On peut en effet se passer du tiers exclu, mais pas de l'axiome d'extentionnalité propositionnelle.
+On pourra poser les définitions suivantes :
+\begin{minted}{coq}
+set (g := fun (y: B) => True).
+set (g' := fun (y: B) => exists x, f x = y).
+\end{minted}
+
+La tactique \(\mintinline{coq}{replace }~e\mintinline{coq}{ with }~e'\) permet de remplacer dans le but les occurrences de \(e\) par \(e'\) en ajoutant le but supplémentaire \(e' = e\). On peut s'en servir pour remplacer le but \mintinline{coq}{exists x : A, f x = y} par \mintinline{coq}{True}, ce qui nous ramènera à prouver
+
+\mintinline{coq}{True = (exists x : A, f x = y)}
+
+qui est convertible en \mintinline{coq}{g x = g' y} (on peut utiliser la tactique \mintinline{coq}{change} pour passer d'un but convertible à un autre).
 \end{enumerate}
 
 \section*{Exercice 2 : Lemme d'affaiblissement}
@@ -53,9 +85,41 @@ Parameter var : Set.
 
 \begin{enumerate}
 \item Définir un inductif \mintinline{coq}{lambda} pour représenter les termes du \(\lambda\)-calcul (on demande trois constructeurs, pour les variables, les abstractions et les applications).
+
+\textbf{Indication :} voici une définition possible pour le premier constructeur
+\begin{minted}{coq}
+Inductive lambda :=
+| Var (x: var)
+| ...
+\end{minted}
+ce qui est un raccourci d'écriture pour
+\begin{minted}{coq}
+Inductive lambda :=
+| Var : forall x: var, lambda (* ou, de manière équivalente, var -> lambda *)
+| ...
+\end{minted}
 \item Définir un inductif \mintinline{coq}{type} pour représenter les types (on demande seulement deux constructeurs : les types atomiques, qui seront nommés par des variables, et l'implication).
+
+\textbf{Indication :} lorsque plusieurs paramètres ont le même type, on peut les écrire sous la même annotation de type
+\begin{minted}{coq}
+Inductive type :=
+| ...
+| Arrow (t u: type).
+\end{minted}
 \item On représentera un contexte par une valeur de type \mintinline{coq}{list (var * type)}. Définir un inductif \mintinline{coq}{derivation} pour représenter les dérivations de typage en logique naturelle: cet inductif aura trois indices, pour le contexte, le \(\lambda\)-terme et son type. On aura un constructeur pour chacune des trois règles suivantes: la règle axiome et les règles d'introduction et d'élimination de l'implication.
+
+\textbf{Indications :} on pourra importer le module \mintinline{coq}{List} de la bibliothèque standard avec la commande vernaculaire \mintinline{coq}{Require Import List.}, et utiliser le prédicat d'appartenance  \mintinline{coq}{In} qui y est défini pour la règle d'axiome.
+\begin{minted}{coq}
+Inductive derivation: context -> lambda -> type -> Prop :=
+| Ax: forall Gamma, forall x t, In (x, t) Gamma -> derivation Gamma (Var x) t
+| ...
+\end{minted}
+
 \item Montrer le lemme d'affaiblissement sur ce fragment : pour tous \(\Gamma\), \(x\) et \(t\), si \(\Gamma \vdash x : t\), alors pour tout \(\Gamma'\), si \(\Gamma \subseteq \Gamma'\), alors \(\Gamma' \vdash x : t\).
+
+\textbf{Indication :} on pourra utiliser \mintinline{coq}{incl} du module \mintinline{coq}{List} pour exprimer \(\Gamma \subseteq \Gamma'\).
+Pour voir les théorèmes déjà définis pour \mintinline{coq}{In} et \mintinline{coq}{incl}, on pourra utiliser les commandes \mintinline{coq}{Search In} et \mintinline{coq}{Search incl.} 
+
 \item On pourra itérativement élargir le fragment aux autres règles de la logique naturelle.
 \end{enumerate}
 
@@ -70,6 +134,45 @@ Inductive vect {A}: nat -> Type :=
 
 Définir une fonction \mintinline{coq}{diag: forall A n, @vect (@vect A n) n -> @vect A n} qui extrait la diagonale d'une matrice carrée.
 
+\textbf{Indications :} on commencera par définir les fonctions auxiliaires suivantes.
+
+\begin{itemize}
+\item \mintinline{coq}{head : forall {A} {n}, @vect A (S n) -> A}
+\item \mintinline{coq}{tail : forall {A} {n}, @vect A (S n) -> @vect A n}
+\item \mintinline{coq}{map : forall {A} {B} {n} (f: A -> B), @vect A n -> @vect B n}
+\end{itemize}
+
+En observant \mintinline{coq}{Print head}, \mintinline{coq}{Print tail} et \mintinline{coq}{Print map}, comprendre comment Coq/Rocq a pu éliminer les cas de filtrage impossibles.
+
+On fera d'abord un filtrage sur \mintinline{coq}{n} et on utilisera le principe de coupure commutative (ou \emph{convoy pattern}):
+lorsqu'on filtre sur une valeur \mintinline{coq}{x} et que \mintinline{coq}{x} et/ou l'un des indices apparaissant dans le type de \mintinline{coq}{x}
+apparaît également dans le type d'autres variables du contexte, on peut \(\eta\)-expanser ces variables autour du \mintinline{coq}{match} pour que leur type soit réécrit en fonction des branches.
+Par exemple, si on a un contexte avec \mintinline{coq}{n: nat} et \mintinline{coq}{mat: @vect (@vect A (S n)) (S n)}, on peut abstraire
+\mintinline{coq}{mat} dans le \mintinline{coq}{match} pour que les occurrences de \mintinline{coq}{n} dans le type de \mintinline{coq}{map} soient remplacées par la valeur prise par \mintinline{coq}{n: nat} dans chacune des branches.
+\begin{minted}{coq}
+  match n as n0 return forall mat: @vect (@vect A n0) n0, ... with
+  | O => fun mat: @vect (@vect A O) O => ...
+  | S m => fun mat: @vect (@vect A (S m)) (S m) => ...
+  end mat.
+\end{minted}
+Noter que le prédicat de retour, \mintinline{coq}{as n0 return forall mat: @vect (@vect A n0) n0, ...}, peut le plus souvent être inféré par Coq/Rocq.
+
+En particulier, si on a dans le contexte \mintinline{coq}{mat: @vect (@vect A (S m)) (S m)}, abstraire le témoin d'égalité \mintinline{coq}{eq_refl : n = n} permet de récupérer dans la branche \mintinline{coq}{cons} un témoin d'égalité \mintinline{coq}{m = m'}, où \mintinline{coq}{m'} est le paramètre de longueur porté par \mintinline{coq}{cons}.
+\begin{minted}{coq}
+match mat with
+| @cons _ m' hd tl => fun e : m = m' => ...
+end eq_refl
+\end{minted}
+
+La même technique permet également d'utiliser un tel témoin d'égalité pour réécrire \mintinline{coq}{m'} en \mintinline{coq}{m} dans le type de \mintinline{coq}{tl : @vect (@vect A m) m'}.
+
+\begin{minted}{coq}
+match e in _ = m0 return forall tl : @vect (@vect A (S m)) m0, @vect A (S m) with
+| eq_refl => fun (tl : @vect (@vect A (S m)) m) => ...
+end (tl : @vect (@vect A (S m)) m')
+\end{minted}
+
+Ici encore, les annotations de type sur \mintinline{coq}{tl} et le prédicat de retour sont superflus.        
 \end{document}
 %%% Local Variables:
 %%% coding: utf-8
