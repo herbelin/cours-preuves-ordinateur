@@ -82,7 +82,7 @@ et \(\exists x \, \exists y \, A \Rightarrow \exists y \, \exists x \, A\).
 On note \(\neg A\) l'implication \(A \Rightarrow \bot\).
 
 \begin{enumerate}
-\item Montrer que \(A \Rightarrow \neg \neg A\) est prouvable en logique intuitionniste.
+\item Montrer que \(\forall A(A \Rightarrow \neg \neg A)\) est prouvable en logique intuitionniste.
 
   Montrer que la réciproque est équivalente au tiers exclu.
 \item Montrer que \(\neg (A \vee B) \Leftrightarrow (\neg A) \wedge (\neg B)\)
@@ -90,8 +90,8 @@ et montrer que \((\neg A) \vee (\neg B) \Rightarrow \neg (A \wedge B)\).
 \item Montrer que \(\neg (\exists x \, A) \Leftrightarrow \forall x (\neg A)\)
 et montrer que \(\exists x (\neg A) \Rightarrow \neg (\forall x \, A)\).
 \item Montrer que la loi de Pierce ci-dessous est équivalente au tiers exclu.
-  \[((A \Rightarrow B) \Rightarrow A) \Rightarrow A\]
-\item On suppose que \(\Gamma\) contient \(\text{call/cc} : ((A \Rightarrow B) \Rightarrow A) \Rightarrow A\).
+  \[\forall A\forall B(((A \Rightarrow B) \Rightarrow A) \Rightarrow A)\]
+\item On suppose que \(\Gamma\) contient \(\text{call/cc} : \forall A\forall B(((A \Rightarrow B) \Rightarrow A) \Rightarrow A)\).
 
 Montrer que, dans le contexte \(\Gamma\), on a \(\neg (A \wedge B) \Rightarrow (\neg A) \vee (\neg B)\)
 et \(\neg (\forall x \, A) \Rightarrow \exists x (\neg A)\).
