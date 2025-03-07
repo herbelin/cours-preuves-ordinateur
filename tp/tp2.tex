@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{fontspec,mathpartir,amsmath,minted}
+\usepackage[a4paper]{geometry}
+\usepackage[francais]{babel}
+\DeclareMathOperator{\efq}{efq}
+\DeclareMathOperator{\case}{case}
+\DeclareMathOperator{\of}{of}
+\DeclareMathOperator{\dest}{dest}
+\DeclareMathOperator{\as}{as}
+\DeclareMathOperator{\cin}{in}
+\usepackage{enumitem}
+\begin{document}
+\title{Arithmétique}
+\author{Preuves assistées par ordinateur -- TP 2 -- 7 mars 2025}
+\date{Année scolaire 2024--2025}
+\maketitle
+
+\section*{Exercice 1 : Quelques résultats d'arithmétique}
+
+On se propose de redémontrer quelques résultats d'arithmétiques déjà démontrés dans la bibliothèque standard de Coq (on indique entre parenthères le nom des énoncés correspondants).
+
+\begin{enumerate}
+\item Démontrer que l'addition est commutative (\mintinline{coq}{Nat.add_comm}) et associative (\mintinline{coq}{Nat.add_assoc}) et admet 0 pour neutre (\mintinline{coq}{plus_O_n}).
+\item Démontrer que la multiplication est distributive par rapport à l'addition (\mintinline{coq}{Nat.mul_add_distr_l}).
+\item Démontrer que la multiplication est commutative (\mintinline{coq}{Nat.mul_comm}) et associative (\mintinline{coq}{Nat.mul_assoc}) et admet 1 pour neutre (\mintinline{coq}{Nat.mul_1_l}) et 0 pour élément absorbant (\mintinline{coq}{Nat.mul_0_l}).
+\end{enumerate}
+
+\section*{Exercice 2 : Compilation vers une machine à pile}
+On considère la définition inductive suivante pour représenter les expressions arithmétiques.
+
+\begin{minted}{coq}
+Inductive expr :=
+| Constant (_ : nat)
+| Plus (_ _ : expr)
+| Times (_ _ : expr).
+\end{minted}
+
+\begin{enumerate}
+
+\item Écrire une fonction \mintinline{coq}{eval} qui calcule la valeur de l'expression.
+\end{enumerate}
+
+On considère maintenant le langage à pile constitué des listes des commandes suivantes.
+
+\begin{minted}{coq}
+Inductive command :=
+| Push (_ : nat)
+| Add
+| Mul.
+\end{minted}
+
+\begin{enumerate}[resume]
+\item Écrire une fonction \mintinline{coq}{eval_stack} qui calcule la valeur d'une liste de commandes étant donnéee une pile initiale. On utilisera un type \mintinline{coq}{option} et la valeur \mintinline{coq}{None} en cas d'erreur de pile.
+
+\item Écrire une fonction \mintinline{coq}{compile} qui traduit une expression et une liste de commandes et démontrer que la valeur évaluée est préservée.
+\end{enumerate}
+
+
+
+\end{document}
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-command-extra-options: "-shell-escape"
+%%% End:
