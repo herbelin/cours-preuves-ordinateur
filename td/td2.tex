@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{fontspec,mathpartir,amsmath}
+\usepackage[a4paper]{geometry}
+\usepackage[francais]{babel}
+\DeclareMathOperator{\efq}{efq}
+\DeclareMathOperator{\case}{case}
+\DeclareMathOperator{\of}{of}
+\DeclareMathOperator{\dest}{dest}
+\DeclareMathOperator{\as}{as}
+\DeclareMathOperator{\cin}{in}
+\begin{document}
+\title{Logique classique et double négation}
+\author{Preuves assistées par ordinateur -- TD 2 -- 13 mars 2025}
+\date{Année scolaire 2024--2025}
+\maketitle
+
+\section*{Exercice 1 : double négation de l'implication}
+Montrer que les énoncés suivants sont tous trois équivalents en logique intuitionniste.
+
+\begin{itemize}
+\item \(\neg\neg (A \Rightarrow B)\)
+\item \(\neg \neg A \Rightarrow \neg \neg B\)
+\item \(A \Rightarrow \neg \neg B\)
+\end{itemize}
+
+\section*{Exercice 2 : variantes du tiers exclu}
+
+Montrer que toutes ces lois (pour toutes propositions \(P\), \(Q\), \(R\)) sont équivalentes en logique intuitionniste.
+
+\begin{itemize}
+\item \(P \vee \neg P\) (tiers exclu)
+\item \(\neg \neg P \Rightarrow P\) (élimination de la double négation)
+\item \((\neg P \Rightarrow P) \Rightarrow P\) (\emph{mirabile consequentia}, loi de Clavius)
+\item \(((P \Rightarrow Q) \Rightarrow P) \Rightarrow P\) (loi de Peirce)
+\item \((\neg (P \Rightarrow Q)) \Rightarrow P \wedge \neg Q\) (principe du contre-exemple)
+\item \(P \vee (P \Rightarrow Q)\) (formule de Tarski)
+\item \((P \Rightarrow Q) \vee (Q \Rightarrow R)\) (principe de linéarité)
+\end{itemize}
+
+Montrer que le tiers exclu faible (\(\neg P \vee \neg \neg P\)) est équivalent à la loi de de Morgan (\(\neg (P \wedge Q) \Rightarrow \neg P \vee \neg Q\)).
+
+\section*{Exercice 3 : traduction négative}
+
+Soit \(\Phi\) une formule propositionnelle en les variables \(P_1, \dots, P_n\).
+
+\begin{enumerate}
+\item Supposons \(\neg \neg \Phi\) prouvable en logique intuitionniste. Montrer que \(\Phi\) est prouvable classiquement.
+\item Supposons \(\Phi\) prouvable classiquement. Montrer que \((P_1 \vee \neg P_1) \Rightarrow \dots \Rightarrow (P_n \vee \neg P_n) \Rightarrow \Phi\) est prouvable en logique intuitionniste. En déduire que \(\neg \neg \Phi\) est prouvable en logique intuitionniste (théorème de Glivenko, 1929).
+\item En déduire que si la logique intuitionniste est cohérente, alors la logique classique est cohérente.
+\end{enumerate}
+\end{document}
