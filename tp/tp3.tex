@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage{fontspec,mathpartir,amsmath,minted}
+\usepackage[a4paper]{geometry}
+\usepackage[francais]{babel}
+\DeclareMathOperator{\efq}{efq}
+\DeclareMathOperator{\case}{case}
+\DeclareMathOperator{\of}{of}
+\DeclareMathOperator{\dest}{dest}
+\DeclareMathOperator{\as}{as}
+\DeclareMathOperator{\cin}{in}
+\usepackage{enumitem}
+\begin{document}
+\title{Autour de l'ensemble \mintinline{coq}{Prop} des valeurs de vérité}
+\author{Preuves assistées par ordinateur -- TP 3 -- 21 mars 2025}
+\date{Année scolaire 2024--2025}
+\maketitle
+
+\section*{Exercice 1 : le paradoxe du buveur et autres versions faibles du tiers exclu}
+
+Le paradoxe du buveur est généralement présenté ainsi : « dans toute pièce non vide, il existe une personne qui, dès que quelqu'un boit, alors elle boit. ».
+
+On peut l'énoncer en Rocq de la manière suivante :
+
+\begin{minted}{coq}
+Definition DrinkerParadox :=
+  forall (A: Type) (P: A -> Prop),
+    A -> exists x, (exists y, P y) -> P x.
+\end{minted}
+
+\begin{enumerate}
+\item Montrer que le tiers exclu implique le paradoxe du buveur.
+\end{enumerate}
+
+On appelle principe d'indépendance des prémisses générales le fait que si une prémisse \(Q\) implique \(\exists x.P(x)\), alors le choix de \(x\) ne dépend pas de \(Q\) : autrement dit, il existe \(x\) tel que \(Q\) implique \(P(x)\).
+
+\begin{minted}{coq}
+Definition IndependenceOfGeneralPremises :=
+  forall (A:Type) (P:A -> Prop) (Q:Prop),
+    A -> (Q -> exists x, P x) -> exists x, Q -> P x.
+\end{minted}
+
+\begin{enumerate}[resume]
+\item Montrer que le paradoxe du buveur est équivalent au principe d'indépendance des prémisses générales.
+\item Montrer que le paradoxe du buveur implique la loi de Gödel-Dummet : pour toutes propositions \(A\) et \(B\), soit \(A\) implique \(B\), soit \(B\) implique \(A\).
+\item Montrer que la loi de Gödel-Dummet est équivalente à la distributivité à droite de l'implication sur la disjonction : pour toutes propositions \(A\), \(B\) et \(C\), si \(C \Rightarrow A \vee B\), alors \((C \Rightarrow A) \vee (C \Rightarrow B)\).
+\item Montrer que la loi de Gödel-Dummet implique le tiers exclu faible : pour toute proposition \(A\), on a soit \(\neg \neg A\), soit \(\neg A\).
+\item Montrer que le tiers exclu faible est équivalent à la loi de de Morgan suivante : pour toute proposition \(A\) et \(B\), si \(\neg (A \wedge B)\), alors \(\neg A \vee \neg B\).
+\end{enumerate}
+
+La contraposée du paradoxe du buveur peut s'énoncer ainsi : « dans toute pièce non vide, il existe une personne telle que si cette personne boit, alors tout le monde dans la pièce boit. ».
+
+\begin{minted}{coq}
+Definition DrinkerParadox' :=
+  forall (A: Type) (P: A -> Prop),
+    A -> exists x, P x -> (forall y, P y).
+\end{minted}
+
+\begin{enumerate}[resume]
+\item Montrer cette version du paradoxe du buveur en supposant le tiers exclu.
+\end{enumerate}
+
+\section*{Exercice 2 : complétude propositionnelle,  extensionalité propositionnelle et tiers exclu}
+
+La complétude (ou dégénérescence) propositionnelle énonce que les seules valeurs de vérité sont \mintinline{coq}{True} et \mintinline{coq}{False}.
+
+\begin{minted}{coq}
+Definition prop_degeneracy := forall A:Prop, A = True \/ A = False.
+\end{minted}
+
+L'extensionalité propositionnelle énonce que deux propositions équivalentes sont égales.
+
+\begin{minted}{coq}
+Definition prop_extensionality := forall A B:Prop, (A <-> B) -> A = B.
+\end{minted}
+
+\begin{enumerate}
+\item Montrer que la complétude propositionnelle implique le tiers exclu et l'extensionalité propositionnelle.
+\item Montrer réciproquement que la conjonction du tiers exclu et de l'extensionalité propositionnelle implique la complétude propositionnelle.
+\end{enumerate}
+
+On suppose l'extensionalité propositionnelle.
+
+\begin{enumerate}[resume]
+\item Montrer que, pour toute proposition \(A\), si \(A\) est vraie, alors \((A \rightarrow A) = A\).
+\item Montrer que, pour toute proposition \(A\), si \(A\) est vraie, alors il existe deux fonctions \(f : A \rightarrow (A \rightarrow A)\)
+et \(g : (A \rightarrow A) \rightarrow A\) telles que \(f \circ g = \mathrm{id}_{A \rightarrow A}\).
+\item Montrer que, pour toute proposition \(A\), si \(A\) est vraie, alors il existe un opérateur de point fixe pour \(A\), c'est-à-dire une
+  fonction \(F : (A \rightarrow A) \rightarrow A\) telle que pour toute fonction \(f: A \rightarrow A\), \(F f\) est un point fixe de \(f\),
+  c'est-à-dire \(f (F f) = F f\).
+\end{enumerate}
+
+\section*{Exercice 3 : théorème d'involution de Higgs}
+
+Montrer le théorème d'involution de Higgs.
+\begin{minted}{coq}
+Theorem Higgs_involution (f : Prop -> Prop) :
+   (forall P Q, (P <-> Q) <-> (f P <-> f Q)) -> (forall P, P <-> f (f P)).
+\end{minted}
+
+Cette version du théorème vaut en théorie des types (sans axiome supplémentaire !).
+Si on suppose en plus l'extensionalité propositionnelle,
+l'énoncé peut être reformulé de la manière suivante : si \(f\) est injective, alors en fait \(f \circ f = \mathrm{id}_{\mintinline{coq}{Prop}}\).
+
+\end{document}
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-command-extra-options: "-shell-escape"
+%%% End:
