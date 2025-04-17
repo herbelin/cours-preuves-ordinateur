@@ -171,23 +171,17 @@ accepte un \(n\)-uplet lorsque celui-ci est accepté par au moins un des deux au
 
 Soit une proposition \(p\) sur les variables \(x_1, \dots, x_n\) et un automate \(\mathcal A = (\{0,1\}^n, S, i, T, F)\) qui reconnaît les solutions de \(p\). Les solutions de la proposition \(\exists x_1 (p)\) sont reconnues par l'automate \(\exists_1 \mathcal A = (\{0,1\}^{n-1}, 2^S, \{i\}, T', \exists_1F)\) où \textbf{[corrigé le 2025-04-17]} \(T' : (s, (a_2, \dots, a_n)) \in 2^S \times \{0,1\}^{n-1} \mapsto \{T(s', (a, a_2, \dots, a_n)) \mid s' \in s, a \in \{0, 1\}\}\)
 et \(\exists_1F = \{s \in 2^S \mid \exists s' \in s, s' \in F\}\).
-De même, les solutions de la proposition \(\forall x_1 (p)\)
-sont reconnues par l'automate \(\forall_1 \mathcal A = (A, 2^S, \{i\}, T', \forall_1F)\)
-où \(\forall_1F = \{s \in 2^S \mid \forall s' \in s, s' \in F\}\).
 
-Écrire deux fonctions
+Écrire une fonction
 \begin{minted}{coq}
 automaton_exists: Automaton -> Automaton
 \end{minted}
-et
-\begin{minted}{coq}
-automaton_forall: Automaton -> Automaton
-\end{minted}
-qui construisent les automates \(\exists_1 \mathcal A\) et \(\forall_1 \mathcal A\)
-Prouver que l'automate construit par \mintinline{coq}{automaton_exists} accepte un \(n\)-uplet \((x_2, \dots, x_n)\)
-lorsqu'il existe un entier \(x_1\) tel que l'automate d'entrée accepte \((x_1, \dots, x_n)\).
-Prouver que l'automate construit par \mintinline{coq}{automaton_forall} accepte un \(n\)-uplet \((x_2, \dots, x_n)\)
-lorsque pour tout un entier \(x_1\), l'automate d'entrée accepte \((x_1, \dots, x_n)\).
+qui construit l'automate \(\exists_1 \mathcal A\).
+
+\textbf{[corrigé le 2025-04-17]} On obtient l'automate qui reconnaît les solutions de \(\forall x_1 (p)\) par double complémentation : \(\forall x_1 (p) = \neg \exists x_1(\neg p)\).
+
+Prouver que l'automate construit par \mintinline{coq}{automaton_exists} accepte un \(n\)-uplet \((x_2, \dots, x_n)\) \textbf{[corrigé le 2025-04-17]} écrit sur \(\ell\) chiffres
+lorsqu'il existe un entier \(x_1\) écrit sur \(\ell\) chiffres tel que l'automate d'entrée accepte \((x_1, \dots, x_n)\).
 
 Écrire une fonction \mintinline{coq}{automaton_choice: Automaton -> option (list nat)} qui renvoie un témoin \mintinline{coq}{Some env} s'il existe un \(n\)-uplet \mintinline{coq}{env} reconnu par l'automate, et \mintinline{coq}{None} si l'automate ne reconnaît aucun mot (on pourra faire un parcours de graphe en largeur). Montrer sa correction.
 
