@@ -39,14 +39,16 @@ preuve de correction effective des programmes.
 
 #### Projet
 
-Le projet sera donné ultérieurement.
+- Le projet est décrit [ici](projets/projet_2025.pdf)
 
-#### Examens
+#### Examens antérieurs
 
 - [examen 2021](examens/examen-2021.pdf) avec sa [correction](examens/examen-correction-2021.pdf) et le [code Coq](examens/examen_correction_2021.v) correspondant
-
+nn
 - [examen 2022](examens/examen-2022.pdf) avec sa [correction partielle](examens/examen-correction-2022.pdf) et le [code Coq](examens/examen_correction_2022.v) correspondant
 
 - [examen 2023](examens/examen-2023.pdf) avec sa [correction](examens/examen_correction_2023.v)
+
+- [examen 2024](examens/examen-2024.pdf)
 
 
